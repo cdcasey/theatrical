@@ -3,16 +3,16 @@
 module.exports = {
 
   test: {
-    client: 'postgres',
+    client: 'postgresql',
     connection: {
-      filename: 'theatrical-test'
+      database: 'theatrical-test'
     }
   },
 
   development: {
-    client: 'postgres',
+    client: 'postgresql',
     connection: {
-      filename: 'theatrical-dev'
+      database: 'theatrical-dev'
     }
   },
 
