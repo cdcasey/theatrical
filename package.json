@@ -1,0 +1,37 @@
+{
+  "name": "theatrical",
+  "version": "1.0.0",
+  "description": "* 1 member from your team will need to fork this repo and update this README file with your proposal. * Make sure to preview your proposal in a markdown preview and [use valid markdown syntax](https://help.github.com/articles/basic-writing-and-formatting-syntax/)   * Unformatted/unreadable proposals will be rejected",
+  "main": "server.js",
+  "scripts": {
+    "test": "mochai --exit",
+    "knex": "knex",
+    "refresh": "db/refresh.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdcasey/theatrical.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdcasey/theatrical/issues"
+  },
+  "homepage": "https://github.com/cdcasey/theatrical#readme",
+  "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "knex": "^0.14.6",
+    "method-override": "^2.3.10",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.0",
+    "morgan": "^1.9.0",
+    "supertest": "^3.0.0"
+  }
+}
