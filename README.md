@@ -14,8 +14,7 @@ Hunter Jefferson, Tim Barnes, Chris Casey
 TheatriCAL
 
 ## Project Description
-THeatre rehearsals are notoriously difficult to schedule.
-An app
+Theatre rehearsals are notoriously difficult to schedule. Actors typically submit black-out dates on paper, email, or via google forms. Regardless of the method, theatre directors need to manually collate the information in order to schedule rehearsals. TheatriCAL puts all of the information necessary to schedule rehearsals in one place. Scheduling rehearsals has never been easier.
 
 ## Who uses it?
 Anyone trying to organize or be involved in a community theatre production.
@@ -47,6 +46,4 @@ Information about plays, productions, and actors, specifically black out dates.
 * An actor can view production info and rehearsal calendar
 * A director can schedule a rehearsal based on actor availability
 * A director can make changes to the rehearsal schedule
-
-
-
+* A director can send out SMS notifications to actors as needed
