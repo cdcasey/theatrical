@@ -35,8 +35,8 @@ Information about plays, productions, and actors, specifically black out dates.
 
 ## Feature list
 * List all features in priority order (including stretch features)
-* User login
-* User account creation
+* A user can create an account so that they can log in
+* A user can log in to view production information
 * A director can create a production, specifying a play & production dates
 * A director can view a list of their productions
 * A director can edit production info
