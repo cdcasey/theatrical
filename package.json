@@ -4,7 +4,7 @@
   "description": "Theatre rehearsals are notoriously difficult to schedule. Actors typically submit black-out dates on paper, email, or via google forms. Regardless of the method, theatre directors need to manually collate the information in order to schedule rehearsals. TheatriCAL puts all of the information necessary to schedule rehearsals in one place. Scheduling rehearsals has never been easier.",
   "main": "server.js",
   "scripts": {
-    "test": "mochai --exit",
+    "test": "mocha --exit",
     "knex": "knex",
     "refresh": "db/refresh.sh"
   },
