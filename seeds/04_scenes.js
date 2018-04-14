@@ -6,6 +6,7 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('scenes').insert([
         { name: '1.prologue', play_id: 1 },
+        { name: '1.1', play_id: 1 },
         { name: '1.2', play_id: 1 },
         { name: '1.3', play_id: 1 },
         { name: '1.4', play_id: 1 },
