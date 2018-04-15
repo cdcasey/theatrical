@@ -13,8 +13,10 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname+"/public"));
 
 const users = require('./routes/users');
+const productions = require('./routes/productions');
 
 app.use('/users', users);
+app.use('/users/:user_id/productions', productions);
 
 app.use((req, res) => {
   res.status(404).send('Not Found');
