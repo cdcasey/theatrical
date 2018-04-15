@@ -23,7 +23,7 @@ describe('Tests for users routes', () => {
             .expect('Content-Type', /json/)
             .expect(200)
             .end((err, res) => {
-                expect(res.text).to.include('Deike');
+                expect(res.text).to.include('Hegedus');
                 done(err);
             });
     });
