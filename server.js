@@ -12,14 +12,18 @@ app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname+"/public"));
 
+const users = require('./routes/users');
 
-app.get('/', (req, res)=>{
-  knex('users')
-  .then((users)=>{
-    res.json(users)
-  })
+app.use('/users', users);
+
+app.use((req, res) => {
+  res.status(404).send('Not Found');
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Internal Server Error');
+});
 
 app.listen(PORT, () => {
   console.log(`All systems are operational captain! Sensors scanning on ${PORT}`);
