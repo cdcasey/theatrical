@@ -16,7 +16,18 @@ exports.seed = function (knex, Promise) {
                 { scene_id: 2, character_id: 12 },
                 { scene_id: 2, character_id: 11 },
                 { scene_id: 2, character_id: 6 },
-                { scene_id: 2, character_id: 16 }
+                { scene_id: 2, character_id: 16 },
+                { scene_id: 3, character_id: 5 },
+                { scene_id: 3, character_id: 17 },
+                { scene_id: 3, character_id: 2 },
+                { scene_id: 3, character_id: 18 },
+                { scene_id: 4, character_id: 6 },
+                { scene_id: 4, character_id: 9 },
+                { scene_id: 4, character_id: 7 },
+                { scene_id: 5, character_id: 17 },
+                { scene_id: 5, character_id: 18 },
+                { scene_id: 5, character_id: 3 },
+
             ]);
         });
 };
