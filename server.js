@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8000;
 const app = express();
 const methodOverride = require('method-override');
+// delete before deployment
+const morgan = require('morgan');
 
 app.set('view engine', 'ejs');
 
@@ -11,6 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname+"/public"));
+// delete before deployment
+app.use(morgan('common'));
 
 const users = require('./routes/users');
 const productions = require('./routes/productions');
