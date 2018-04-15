@@ -3,6 +3,6 @@
 const knex = require('../db/knex');
 const Resource = require('./resource');
 
-class Plays extends Resource() {};
+class Plays extends Resource {};
 
-module.exports = new Employees('plays');
+module.exports = new Plays('plays');

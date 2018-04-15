@@ -23,7 +23,19 @@ describe('Tests for users routes', () => {
             .expect('Content-Type', /json/)
             .expect(200)
             .end((err, res) => {
-                expect(res.text).to.include('Deike');
+                expect(res.text).to.include('Hegedus');
+                done(err);
+            });
+    });
+
+    it('GET /users/:id should return info about a user', (done) => {
+        request.get('/users/3')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.text).to.include('Chris');
+                expect(res.body.user.phone).to.equal('512-850-6232');
+                expect(res.body.user.email).to.equal('cdcasey@gmail.com');
                 done(err);
             });
     });
