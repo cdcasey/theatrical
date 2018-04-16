@@ -6,7 +6,7 @@ const Resource = require('./resource');
 class Productions extends Resource {
     byUser(userId) {
         return knex(this.table)
-            .select('productions.id as id', 'productions.name as production', 'dates')
+            .select('productions.id as id', 'productions.name', 'performance_dates')
             .join('users_productions', 'productions.id', 'users_productions.production_id')
             .where('users_productions.user_id', userId);
     };
