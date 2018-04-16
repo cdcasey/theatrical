@@ -19,7 +19,6 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log("booyah")
   userModel.getByEmail(req.body.email)
     .then((user) => {
       if(!user){
@@ -27,7 +26,7 @@ router.post('/', (req, res) => {
       }else{
         bcrypt.compare(req.body.password, user.password)
           .then((success)=>{
-            console.log('Logged in');
+            console.log(user);
             req.session.user = user;
             res.redirect('/');
           })
