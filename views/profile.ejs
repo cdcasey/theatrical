@@ -52,9 +52,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
          <h4 class="w3-center" style="margin-top: 15px">My Profile</h4>
          <p class="w3-center"><img src="https://www.hadiwinata.com/assets/up/bb-plugin/cache/sample-profile-circle.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Hunter Jefferson</p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>hunterjefferson@utexas.edu</p>
-         <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>555-555-5555</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><%= user.first_name %> <%= user.last_name %></p>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.email %></p>
+         <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i><%= user.phone %></p>
         </div>
       </div>
       <br>
@@ -66,7 +66,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           <div id="Demo1" class="w3-hide w3-container">
             <ul>
               <% for(production of productions){ %>
-                <h4><%=production.name%></h4></a>
+                <h4><%= production.name %></h4></a>
                 <form action="#">
                     <input type="submit" value="Edit production" />
                 </form>
@@ -76,20 +76,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
               <% } %>
             </ul>
           </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Plays</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <ul>
-              <% for(play of plays){ %>
-                <h4><%=play.name%></h4></a>
-                <form action="#">
-                    <input type="submit" value="Edit play" />
-                </form>
-                <form method="POST" action="#">
-                    <button type="submit">Delete play</button>
-                </form>
-              <% } %>
-            </ul>
-          </div>
+
         </div>
       </div>
       <br>
@@ -113,9 +100,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <div class="w3-container">
           <br>
           <p>Upcoming Rehearsals:</p>
-          <p><strong>Romeo & Juliet</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+          <% for(production of productions){ %>
+            <% if (production.rehearsal_dates) { %>
+              <p><strong><%= production.name %></strong></p>
+              <p><%= production.rehearsal_dates %></p>
+              <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+            <% } %>
+          <% } %>
         </div>
       </div>
       <br>
