@@ -43,12 +43,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- This is the modal -->
 <div id="modal-example" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Headline</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button">Save</button>
-        </p>
+      <container id="signInContainer">
+<form>
+  <fieldset class="uk-fieldset">
+
+      <legend class="uk-legend">Sign In</legend>
+
+      <div class="uk-margin">
+          <input class="uk-input" id="txtEmail" type="email" placeholder="Email">
+      </div>
+
+      <div class="uk-margin">
+          <input class="uk-input" id="txtPassword" type="password" placeholder="Password">
+      </div>
+
+      <div class="uk-margin">
+          <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Log In</button>
+          <button id="btnSignUp" class="uk-button uk-button-default btn btn-secondary">Sign Up</button>
+          <button id="btnLogout" class="uk-button uk-button-default btn btn-action hidden">Log Out</button>
+      </div>
+
+  </fieldset>
+</form>
+</container>
     </div>
 </div>
 
