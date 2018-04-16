@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 // delete before deployment
 const morgan = require('morgan');
 
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -18,7 +19,9 @@ app.use(morgan('common'));
 
 const users = require('./routes/users');
 const productions = require('./routes/productions');
+const auth = require('./routes/auth')
 
+app.use('/auth', auth);
 app.use('/users', users);
 app.use('/users/:user_id/productions', productions);
 

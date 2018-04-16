@@ -14,6 +14,16 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.post('/', (req, res, next) => {
+    usersModel.create(req.body)
+        .then((user) => {
+            res.status(201).json(user);
+        })
+        .catch((err) => {
+            next(err);
+        })
+});
+
 router.get('/:id', (req, res, next) => {
     usersModel.getById(req.params.id)
         .then((user) => {
