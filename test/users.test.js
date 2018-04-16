@@ -6,6 +6,7 @@ const expect = require('chai').expect;
 
 const knexConfig = require('../knexfile')['test'];
 const knex = require('knex')(knexConfig);
+const bcryptSync = require('bcrypt');
 
 describe('Tests for users routes', () => {
     before((done) => {
@@ -25,6 +26,25 @@ describe('Tests for users routes', () => {
             .end((err, res) => {
                 expect(res.text).to.include('Hegedus');
                 done(err);
+            });
+    });
+
+    it('POST /users should create a new entry in the database', function (done) {
+        request.post('/users')
+            .send({ first_name: 'Charlie', last_name: 'Stites', phone: '555-555-555', email: 'charlie@someemail.nope', password: bcryptSync.hashSync('charlie', 10), role_id: 2 })
+            .expect(201)
+            .end(function (err, res) {
+                if (err) throw err;
+                knex('users')
+                    .where({
+                        email: 'charlie@someemail.nope'
+                    })
+                    .first()
+                    .then((user) => {
+                        expect(user.last_name).to.equal('Stites');
+                        expect(bcryptSync.compareSync('charlie', user.password)).to.equal(true);
+                        done();
+                    });
             });
     });
 
