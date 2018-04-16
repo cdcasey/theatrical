@@ -27,7 +27,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Productions</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 3</a>
     <a href="#modal-example" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" uk-toggle>Register/Login</a>
   </div>
 
@@ -44,11 +43,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div id="modal-example" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="signInContainer">
+<<<<<<< HEAD
 <form action='/auth' method='POST'>
   <fieldset class="uk-fieldset">
+=======
+          <form>
+            <fieldset class="uk-fieldset">
+>>>>>>> 7127c42cef69a028dd0b2f39b77e9b64be380229
 
-      <legend class="uk-legend">Sign In</legend>
+                <legend class="uk-legend">Sign In</legend>
 
+<<<<<<< HEAD
       <div class="uk-margin">
           <input class="uk-input" id="txtEmail" name='email' type="email" placeholder="Email">
       </div>
@@ -62,9 +67,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           <button id="btnSignUp" class="uk-button uk-button-default btn btn-secondary">Sign Up</button>
           <button id="btnLogout" class="uk-button uk-button-default btn btn-action hidden">Log Out</button>
       </div>
+=======
+                <div class="uk-margin">
+                    <input class="uk-input" id="txtEmail" type="email" placeholder="Email">
+                </div>
 
-  </fieldset>
-</form>
+                <div class="uk-margin">
+                    <input class="uk-input" id="txtPassword" type="password" placeholder="Password">
+                </div>
+
+                <div class="uk-margin">
+                    <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Log In</button>
+                    <button id="btnSignUp" class="uk-button uk-button-default btn btn-secondary">Sign Up</button>
+                    <button id="btnLogout" class="uk-button uk-button-default btn btn-action hidden">Log Out</button>
+                </div>
+>>>>>>> 7127c42cef69a028dd0b2f39b77e9b64be380229
+
+            </fieldset>
+          </form>
 </container>
     </div>
 </div>
