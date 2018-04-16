@@ -6,12 +6,12 @@ const userModel = require('../models/users');
 const bcrypt = require('bcrypt-as-promised');
 
 
-router.get('/', (req, res)=>{
-  res.send('You are here.')
-  .catch((err) => {
-      next(err);
-  });
-});
+// router.get('/', (req, res)=>{
+//   res.render('index')
+//   .catch((err) => {
+//       next(err);
+//   });
+// });
 
 router.get('/logout', (req, res) => {
   req.session = null;
@@ -19,6 +19,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log("booyah")
   userModel.getByEmail(req.body.email)
     .then((user) => {
       if(!user){
