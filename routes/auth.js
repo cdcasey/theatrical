@@ -20,9 +20,8 @@ router.post('/', (req, res) => {
       }else{
         bcrypt.compare(req.body.password, user.password)
           .then((success)=>{
-            console.log(user);
-            req.session.user = user;
-            res.redirect('/');
+            // req.session.user = user;
+            res.send('Logged in')
           })
           .catch((err)=>{
             res.status(400).redirect('/')

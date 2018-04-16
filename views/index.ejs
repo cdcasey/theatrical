@@ -44,17 +44,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div id="login" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="signInContainer">
-          <form>
+          <form action="/auth" method="POST">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Sign In</legend>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtEmail" type="email" placeholder="Email">
+                    <input class="uk-input" id="txtEmail" type="email" name="email" placeholder="Email">
                 </div>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtPassword" type="password" placeholder="Password">
+                    <input class="uk-input" id="txtPassword" type="password" name="password" placeholder="Password">
                 </div>
 
                 <div class="uk-margin">
