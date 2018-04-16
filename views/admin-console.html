@@ -11,6 +11,9 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
+.uk-subnav-pill>.uk-active>a {background-color: #505050 !important;}
+/* .uk-subnav>* {padding-left: 20px !important; width: 100% !important;}
+*, *:before, *:after {box-sizing: content-box !important;} */
 </style>
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
@@ -25,10 +28,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link1</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Productions</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Link 4</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Register/Login</a>
   </div>
 
   <!-- Navbar on small screens -->
@@ -44,17 +47,27 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <br>
 <br>
-<br>
+<h3 style="text-align: center"><%= production.name %></h3>
 <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-    <li><a href="#">Item</a></li>
-    <li><a href="#">Item</a></li>
-    <li><a href="#">Item</a></li>
+    <li style="width:50%; text-align: center;"><a href="#">Production Schedule</a></li>
+    <li style="width:50%; text-align: center;"><a href="#">Cast List</a></li>
 </ul>
 
 <ul class="uk-switcher uk-margin">
     <li>This is a calendar!</li>
-    <li>This is a cast list!</li>
-    <li>Bazinga!</li>
+    <li>
+      <table>
+        <% for(actor of actors){ %>
+          <tr>
+            <th><%=actor.firstName%> <%=actor.lastName%></th>
+            <th><%=actor.character%></th>
+            <th><%=actor.email%></th>
+            <th><%=actor.phoneNumber%></th>
+            <th>BLACKOIUTDATES</th>
+          </tr>
+        <% } %>
+      </table>
+    </li>
 </ul>
 
 
