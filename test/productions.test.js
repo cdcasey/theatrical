@@ -24,6 +24,7 @@ describe('Tests for productions routes', () => {
             .expect(200)
             .end((err, res) => {
                 expect(res.text).to.include('Romeo and Juliet');
+                expect(res.body.productions[0].id).to.equal(1);
                 done(err);
             });
     });
