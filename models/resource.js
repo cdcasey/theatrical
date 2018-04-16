@@ -1,7 +1,7 @@
 'use strict';
 
 const knex = require('../db/knex');
-
+const bcryptSync = require('bcrypt');
 
 class Resource {
     constructor(table) {
@@ -17,16 +17,30 @@ class Resource {
     }
 
     create(data) {
+        this.validateData(data);
         return knex(this.table).insert(data).returning('*');
     }
 
     update(id, data) {
+        this.validateData(data);
         return knex(this.table).where('id', id).update(data);
     }
 
     delete(id) {
         return this.getById(id).del();
     }
+
+    validateData(data) {
+        for (const key in data) {
+            if (!data[key]) {
+                delete data[key];
+            }
+            if (key === 'password') {
+                data[key] = bcryptSync.hashSync(data[key], 10);
+            }
+        }
+    }
+
 }
 
 module.exports = Resource;
