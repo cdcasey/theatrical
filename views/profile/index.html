@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script>
+    <style>
+
+      table {
+         font-family: arial, sans-serif;
+         border-collapse: collapse;
+         width: 100%;
+      }
+
+      td, th {
+         border: 1px solid #dddddd;
+         text-align: left;
+         padding: 8px;
+      }
+
+      tr:nth-child(even) {
+         background-color: #dddddd;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="">
+      <a href="#">Login</a>
+    </div>
+    <div>
+      <a href="#">Contact info</a>
+    </div>
+    <div class="">
+      <a href="#">Productions</a>
+    </div>
+    <div class="">
+      <a href="#">Availability</a>
+    </div>
+    <div>
+      <a href="#">Cast List</a>
+        <table>
+          <% for(actor of actors){ %>
+            <tr>
+              <th><%=actor.firstName%> <%=actor.lastName%></th>
+              <th><%=actor.character%></th>
+              <th><%=actor.email%></th>
+              <th><%=actor.phoneNumber%></th>
+              <th>BLACKOIUTDATES</th>
+            </tr>
+          <% } %>
+        </table>
+    </div>
+
+  </body>
+</html>
