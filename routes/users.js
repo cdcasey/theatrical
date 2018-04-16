@@ -48,4 +48,25 @@ router.get('/:id/profile', (req, res, next) => {
         });
 });
 
+router.patch('/:id', (req, res, next) => {
+    usersModel.update(req.body)
+        .then((user) => {
+            res.status(201).json(user);
+        })
+        .catch((err) => {
+            next(err);
+        })
+});
+
+router.delete('/:id', (req, res)=>{
+    usersModel.where('id', id)
+    .del()
+    .then(()=>{
+      res.send('Deleted user')
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+})
+
 module.exports = router;
