@@ -47,3 +47,7 @@ Information about plays, productions, and actors, specifically black out dates.
 * A director can schedule a rehearsal based on actor availability
 * A director can make changes to the rehearsal schedule
 * A director can send out SMS notifications to actors as needed
+
+
+
+<!-- ./node_modules/mocha/bin/mocha -t 5000 --exit -->

@@ -48,6 +48,15 @@ describe('Tests for users routes', () => {
             });
     });
 
+    it('POST /auth should return true when the correct email and password are given', function(done){
+      request.post('/auth')
+      .send({email:'tbarnes62@austin.rr.com', password:'tim'})
+      .expect(200)
+      .end((err)=>{
+        done(err);
+      })
+    })
+
     it('GET /users/:id should return info about a user', (done) => {
         request.get('/users/3')
             .expect('Content-Type', /json/)
