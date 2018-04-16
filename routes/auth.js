@@ -6,12 +6,6 @@ const userModel = require('../models/users');
 const bcrypt = require('bcrypt-as-promised');
 
 
-// router.get('/', (req, res)=>{
-//   res.render('index')
-//   .catch((err) => {
-//       next(err);
-//   });
-// });
 
 router.get('/logout', (req, res) => {
   req.session = null;
