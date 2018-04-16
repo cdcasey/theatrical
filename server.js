@@ -25,6 +25,11 @@ app.use('/auth', auth);
 app.use('/users', users);
 app.use('/users/:user_id/productions', productions);
 
+
+app.get('/', (req, res)=>{
+  res.render('index');
+});
+
 app.use((req, res) => {
   res.status(404).send('Not Found');
 });
