@@ -71,29 +71,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div id="register" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="signInContainer">
-          <form>
+          <form action="/users" method="POST">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Sign Up</legend>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtFirstName" type="text" placeholder="First Name">
+                    <input class="uk-input" id="registerFirstName" name="first_name" type="text" placeholder="First Name">
                 </div>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtLastName" type="text" placeholder="Last Name">
+                    <input class="uk-input" id="registerLastName" name="last_name" type="text" placeholder="Last Name">
                 </div>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtEmail" type="email" placeholder="Email">
+                    <input class="uk-input" id="registerEmail" name="email" type="email" placeholder="Email" required>
                 </div>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtPassword" type="password" placeholder="Password">
+                    <input class="uk-input" id="registerPassword" name="password" type="password" placeholder="Password" required>
                 </div>
 
                 <div class="uk-margin">
-                    <input class="uk-input" id="txtPhone" type="text" placeholder="Phone Number ('555-555-5555')">
+                    <input class="uk-input" id="registerPhone" name="phone" type="text" placeholder="Phone Number ('555-555-5555')">
                 </div>
 
                 <div class="uk-margin">
@@ -102,7 +102,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
             </fieldset>
           </form>
-</container>
+      </container>
     </div>
 </div>
 
