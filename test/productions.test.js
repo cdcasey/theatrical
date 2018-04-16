@@ -50,4 +50,16 @@ describe('Tests for productions routes', () => {
             });
     });
 
+    it('GET /users/:user_id/productions/:id/blackoutdates should return a list of blackout dates for each cast member', (done) => {
+        request.get('/users/3/productions/1/blackoutdates')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body.blackoutDates[0].first_name).to.equal('Chris');
+                expect(res.body.blackoutDates[0].character).to.equal('Lord Capulet');
+                expect(res.body.blackoutDates[0].blackout_dates).to.deep.equal(["2018-04-24", "2018-04-25", "2018-04-26", "2018-04-27"]);
+                done(err);
+            });
+    });
+
 });

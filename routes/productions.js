@@ -5,8 +5,6 @@ const router = express.Router({ mergeParams: true });
 const productionsModel = require('../models/productions');
 
 router.get('/', (req, res, next) => {
-    console.log("USER_ID", req.params.user_id);
-
     productionsModel.byUser(req.params.user_id)
         .then((productions) => {
             res.json({ productions })
@@ -30,6 +28,16 @@ router.get('/:id/cast', (req, res, next) => {
     productionsModel.castList(req.params.id)
         .then((cast) => {
             res.json({ cast })
+        })
+        .catch((err) => {
+            next(err);
+        });
+});
+
+router.get('/:id/blackoutdates', (req, res, next) => {
+    productionsModel.blackoutDates(req.params.id)
+        .then((blackoutDates) => {
+            res.json({ blackoutDates })
         })
         .catch((err) => {
             next(err);
