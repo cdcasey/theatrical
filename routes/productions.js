@@ -91,4 +91,14 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
         });
 });
 
+router.post('/', (req, res, next)=>{
+  productionsModel.create(req.body)
+  .then((production)=>{
+    res.status(201).json(production)
+  })
+  .catch((err)=>{
+    res.send(err)
+  });
+});
+
 module.exports = router;
