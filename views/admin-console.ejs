@@ -8,15 +8,27 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- Fullcalendar CSS -->
+<link href='/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
 
 <!-- Admin Console CSS -->
 <link rel="stylesheet" href="/css/admin.css">
 
+<!-- Fullcalendar JS -->
+<script src='/fullcalendar/moment.min.js' defer></script>
+<script src='/fullcalendar/jquery.min.js' defer></script>
+<script src='/fullcalendar/fullcalendar.min.js' defer></script>
+
 <!-- UIkit JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script>
+
+<!-- Admin Console JS -->
+<script src="/js/admin.js" defer></script>
 
 <body>
 
@@ -44,13 +56,18 @@
 <br>
 <br>
 <h3 style="text-align: center"><%= production.name %></h3>
+<!-- <div class="id-field"><%= production.id %></div> -->
 <ul class="uk-subnav uk-subnav-pill" uk-switcher>
     <li style="width:50%; text-align: center;"><a href="#">Production Schedule</a></li>
     <li style="width:50%; text-align: center;"><a href="#">Cast List</a></li>
 </ul>
 
 <ul class="uk-switcher uk-margin">
-    <li>This is a calendar!</li>
+
+    <!-- Calendar -->
+    <li id="calendar"></li>
+
+    <!-- Production Schedule -->
     <li>
       <table>
           <tr>
