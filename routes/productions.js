@@ -56,4 +56,18 @@ router.get('/:id/admin', (req, res, next) => {
         });
 });
 
+
+
+router.post('/', (req, res, next)=>{
+    productionsModel.create(req.body)
+    .then((production)=>{
+      res.status(201).json(production)
+    })
+    .catch((err)=>{
+      next(err)
+    });
+});
+
+
+
 module.exports = router;
