@@ -44,4 +44,16 @@ router.get('/:id/blackoutdates', (req, res, next) => {
         });
 });
 
+router.get('/:id/admin', (req, res, next) => {
+    const production = productionsModel.getById(req.params.id);
+    const cast = productionsModel.blackoutDates(req.params.id);
+    Promise.all([production, cast])
+        .then((data) => {
+            res.render('admin-console', { production: data[0], actors: data[1] });
+        })
+        .catch((err) => {
+            next(err);
+        });
+});
+
 module.exports = router;

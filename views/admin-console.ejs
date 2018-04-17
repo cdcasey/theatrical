@@ -56,13 +56,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <li>This is a calendar!</li>
     <li>
       <table>
+          <tr>
+            <th>Name</th>
+            <th>Part</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Blackout Dates</th>
+          </tr>
         <% for(actor of actors){ %>
           <tr>
-            <th><%=actor.firstName%> <%=actor.lastName%></th>
-            <th><%=actor.character%></th>
-            <th><%=actor.email%></th>
-            <th><%=actor.phoneNumber%></th>
-            <th>BLACKOIUTDATES</th>
+            <td><%=actor.first_name%> <%=actor.last_name%></td>
+            <td><%=actor.character%></td>
+            <td><%=actor.email%></td>
+            <td><%=actor.phone%></td>
+            <td><%=actor.blackout_dates%></td>
           </tr>
         <% } %>
       </table>

@@ -24,7 +24,7 @@ class Productions extends Resource {
     blackoutDates(id) {
         return knex('users')
             .orderBy('id')
-            .select('users.id as id', 'users.first_name', 'users.last_name', 'characters.name as character', 'users_productions.blackout_dates')
+            .select('users.id as id', 'users.first_name', 'users.last_name', 'users.phone', 'users.email', 'characters.name as character', 'users_productions.blackout_dates')
             .join('users_productions', 'users.id', 'users_productions.user_id')
             .join('users_characters', 'users.id', 'users_characters.user_id')
             .join('characters', 'users_characters.character_id', 'characters.id')
