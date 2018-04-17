@@ -48,13 +48,13 @@ describe('Tests for users routes', () => {
             });
     });
 
-    it('POST /auth should return true when the correct email and password are given', function(done){
-      request.post('/auth')
-      .send({email:'tbarnes62@austin.rr.com', password:'tim'})
-      .expect(200)
-      .end((err)=>{
-        done(err);
-      })
+    it('POST /auth should return true when the correct email and password are given', function (done) {
+        request.post('/auth')
+            .send({ email: 'tbarnes62@austin.rr.com', password: 'tim' })
+            .expect(200)
+            .end((err) => {
+                done(err);
+            })
     })
 
     it('GET /users/:id should return info about a user', (done) => {
@@ -66,6 +66,26 @@ describe('Tests for users routes', () => {
                 expect(res.body.user.phone).to.equal('512-850-6232');
                 expect(res.body.user.email).to.equal('cdcasey@gmail.com');
                 done(err);
+            });
+    });
+
+    it('PATCH /users/:id should update info about a user', (done) => {
+        request.patch('/users/3')
+            .send({ phone: '512-850-6230' })
+            // .expect('Content-Type', /json/)
+            // .expect(200)
+            .end((err, res) => {
+                if (err) throw err;
+                knex('users')
+                    .where({
+                        id: '3'
+                    })
+                    .first()
+                    .then((user) => {
+                        expect(user.phone).to.equal('512-850-6230');
+                        expect(user.email).to.equal('cdcasey@gmail.com');
+                        done(err);
+                    });
             });
     });
 

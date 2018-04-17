@@ -49,9 +49,9 @@ router.get('/:id/profile', (req, res, next) => {
 });
 
 router.patch('/:id', (req, res, next) => {
-    usersModel.update(req.body)
+    usersModel.update(req.params.id, req.body)
         .then((user) => {
-            res.status(201).json(user);
+            res.redirect(`/users/${req.params.id}/profile`);
         })
         .catch((err) => {
             next(err);
