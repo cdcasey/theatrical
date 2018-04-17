@@ -38,9 +38,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="dropdown">
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content" style="margin-top: 50px;">
-        <!-- <%# for(production of productions){ %>
-          <a href="#"><%#= production.name %></a>
-        <%# } %> -->
+        <% for(production of productions){ %>
+          <a href="#"><%= production.name %></a>
+        <% } %>
       </div>
     </div>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white w3-hover-white">Profile</a>
@@ -52,9 +52,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="dropdown w3-bar-item w3-button w3-padding-large">
       <a href="#" class="">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content">
-        <!-- <%# for(production of productions){ %>
-          <a href="#"><%#= production.name %></a>
-        <%# } %> -->
+        <% for(production of productions){ %>
+          <a href="#"><%= production.name %></a>
+        <% } %>
       </div>
     </div>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Profile</a>
@@ -133,15 +133,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           <div id="Demo1" class="w3-hide w3-container">
             <a href="#addProduction" class="w3-bar-item w3-button w3-padding-large" uk-toggle>Create Production</a><br>
             <ul>
-              <!-- <%# for(production of productions){ %>
-                <h4><%#= production.name %></h4></a>
+              <% for(production of productions){ %>
+                <a href='/users/<%=user.id%>/productions/<%=production.id%>/admin'><h4><%= production.name %></h4></a>
                 <form action="#">
                     <input type="submit" value="Edit production" />
                 </form>
                 <form method="POST" action="#">
                     <button type="submit">Delete production</button>
                 </form>
-              <%# } %> -->
+              <% } %>
             </ul>
           </div>
         </div>
