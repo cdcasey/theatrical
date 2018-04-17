@@ -11,6 +11,16 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
+.navbar {overflow: hidden; background-color: #333; font-family: Arial, Helvetica, sans-serif;}
+.navbar a {float: left; font-size: 16px; color: white; text-align: center; padding: 14px 16px; text-decoration: none;}
+.dropdown {float: left; overflow: hidden;}
+.dropdown .dropbtn {font-size: 16px; border: none; outline: none; color: white; padding: 14px 16px; background-color: inherit; font-family: inherit; margin: 0;}
+.navbar a:hover, .dropdown:hover .dropbtn {background-color: red;}
+.dropdown-content {display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
+.dropdown-content a {float: none; color: black; padding: 12px 16px; text-decoration: none; display: block; text-align: left;}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+.uk-link, a {color: black !important;}
 </style>
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
@@ -24,18 +34,31 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Productions</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
-    <a href="#edit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <div class="dropdown">
+      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Productions <i class="fa fa-caret-down"></i></a>
+      <div class="dropdown-content" style="margin-top: 50px;">
+        <!-- <%# for(production of productions){ %>
+          <a href="#"><%#= production.name %></a>
+        <%# } %> -->
+      </div>
+    </div>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white w3-hover-white">Profile</a>
+    <a href="/auth/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
   </div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Productions</a>
+    <div class="dropdown w3-bar-item w3-button w3-padding-large">
+      <a href="#" class="">Productions <i class="fa fa-caret-down"></i></a>
+      <div class="dropdown-content">
+        <!-- <%# for(production of productions){ %>
+          <a href="#"><%#= production.name %></a>
+        <%# } %> -->
+      </div>
+    </div>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Profile</a>
-    <a href="#login" class="w3-bar-item w3-button w3-padding-large">Login</a>
-    <a href="#register" class="w3-bar-item w3-button w3-padding-large">Register</a>
+    <a href="/auth/logout" class="w3-bar-item w3-button w3-padding-large">Logout</a>
   </div>
 </div>
 
@@ -106,24 +129,51 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Productions</button>
+          <button onclick="accordionFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Productions</button>
           <div id="Demo1" class="w3-hide w3-container">
+            <a href="#addProduction" class="w3-bar-item w3-button w3-padding-large" uk-toggle>Create Production</a><br>
             <ul>
-              <% for(production of productions){ %>
-                <h4><%= production.name %></h4></a>
+              <!-- <%# for(production of productions){ %>
+                <h4><%#= production.name %></h4></a>
                 <form action="#">
                     <input type="submit" value="Edit production" />
                 </form>
                 <form method="POST" action="#">
                     <button type="submit">Delete production</button>
                 </form>
-              <% } %>
+              <%# } %> -->
             </ul>
           </div>
-
         </div>
       </div>
       <br>
+
+      <!-- Add Production Modal -->
+      <div id="addProduction" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <container id="addProductionContainer">
+                <form action="#" method="POST">
+                  <fieldset class="uk-fieldset">
+
+                      <legend class="uk-legend">Add a production</legend>
+
+                      <div class="uk-margin">
+                          <input class="uk-input" id="prodName" type="text" name="name" placeholder="Name of production">
+                      </div>
+
+                      <div class="uk-margin">
+                          <input class="uk-input" id="prodDates" type="password" name="password" placeholder="Password">
+                      </div>
+
+                      <div class="uk-margin">
+                          <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Create Production</button>
+                      </div>
+
+                  </fieldset>
+                </form>
+             </container>
+          </div>
+      </div>
 
 
     <!-- End Left Column -->
@@ -138,7 +188,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
     </div>
 
-    <!-- Right Column -->
+    <!-Right Column -->
     <div class="">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
@@ -172,34 +222,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
  <p>© 2018 Tim Burns, Chris Casey, and Hunter Jefferson. ALL RIGHTS RESERVED. | AUSTIN, TX</p>
 </footer>
-
 <script>
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
+// Accordion
+function accordionFunction(id) {
+    var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
     } else {
         x.className = x.className.replace(" w3-show", "");
     }
 }
-</script>
-<script>
-// Accordion
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
-    } else {
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className =
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-    }
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";

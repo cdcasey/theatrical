@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         bcrypt.compare(req.body.password, user.password)
           .then((success)=>{
             // req.session.user = user;
-            res.redirect(200, `/users/${user.id}/profile`);
+            res.redirect(`/users/${user.id}/profile`);
           })
           .catch((err)=>{
             res.status(400).redirect('/')
