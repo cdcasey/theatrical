@@ -68,25 +68,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div id="edit" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
           <container id="edit_profile">
-            <form>
+            <form action="/users/<%=user.id%>?_method=PATCH" method="POST">
               <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Edit profile info</legend>
 
                 <div class="uk-margin">
-                  <input class="uk-input" id="first_name" type="first_name" value="<%=user.first_name%>">
+                  <input class="uk-input" id="first_name" name="first_name" type="first_name" value="<%=user.first_name%>">
                 </div>
 
                 <div class="uk-margin">
-                  <input class="uk-input" id="last_name" type="last_name" value="<%=user.last_name%>">
+                  <input class="uk-input" id="last_name" name="last_name" type="last_name" value="<%=user.last_name%>">
                 </div>
 
                 <div class="uk-margin">
-                  <input class="uk-input" id="email" type="email" value="<%=user.email%>">
+                  <input class="uk-input" id="email" name="email" type="email" value="<%=user.email%>">
                 </div>
 
                 <div class="uk-margin">
-                  <input class="uk-input" id="phone" type="phone" value="<%=user.phone%>">
+                  <input class="uk-input" id="phone" name="phone" type="phone" value="<%=user.phone%>">
                 </div>
 
                 <div class="uk-margin">
