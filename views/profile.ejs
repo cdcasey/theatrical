@@ -129,24 +129,51 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Productions</button>
+          <button onclick="accordionFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Productions</button>
           <div id="Demo1" class="w3-hide w3-container">
+            <a href="#addProduction" class="w3-bar-item w3-button w3-padding-large" uk-toggle>Create Production</a><br>
             <ul>
-              <% for(production of productions){ %>
-                <h4><%= production.name %></h4></a>
+              <!-- <%# for(production of productions){ %>
+                <h4><%#= production.name %></h4></a>
                 <form action="#">
                     <input type="submit" value="Edit production" />
                 </form>
                 <form method="POST" action="#">
                     <button type="submit">Delete production</button>
                 </form>
-              <% } %>
+              <%# } %> -->
             </ul>
           </div>
-
         </div>
       </div>
       <br>
+
+      <!-- Add Production Modal -->
+      <div id="addProduction" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <container id="addProductionContainer">
+                <form action="#" method="POST">
+                  <fieldset class="uk-fieldset">
+
+                      <legend class="uk-legend">Add a production</legend>
+
+                      <div class="uk-margin">
+                          <input class="uk-input" id="prodName" type="text" name="name" placeholder="Name of production">
+                      </div>
+
+                      <div class="uk-margin">
+                          <input class="uk-input" id="prodDates" type="password" name="password" placeholder="Password">
+                      </div>
+
+                      <div class="uk-margin">
+                          <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Create Production</button>
+                      </div>
+
+                  </fieldset>
+                </form>
+             </container>
+          </div>
+      </div>
 
 
     <!-- End Left Column -->
@@ -197,15 +224,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </footer>
 <script>
 // Accordion
-function myFunction(id) {
+function accordionFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
     } else {
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className =
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        x.className = x.className.replace(" w3-show", "");
     }
 }
 // Used to toggle the menu on small screens when clicking on the menu button
