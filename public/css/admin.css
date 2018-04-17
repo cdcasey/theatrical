@@ -18,3 +18,11 @@ tr:nth-child(even) {background-color: #dddddd;}
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .uk-link, a {color: black !important;}
+
+.rehearsal {
+  background-color: red;
+}
+
+.blackout {
+  background-color: black;
+}
