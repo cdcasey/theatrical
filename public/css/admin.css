@@ -1,7 +1,7 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
-.uk-subnav-pill>.uk-active>a {background-color: #505050 !important;}
+.uk-subnav-pill>.uk-active>a {background-color: #505050 !important; color: white !important;}
 /* .uk-subnav>* {padding-left: 20px !important; width: 100% !important;}
 *, *:before, *:after {box-sizing: content-box !important;} */
 
@@ -18,3 +18,11 @@ tr:nth-child(even) {background-color: #dddddd;}
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .uk-link, a {color: black !important;}
+
+.rehearsal {
+  background-color: red;
+}
+
+.blackout {
+  background-color: black;
+}
