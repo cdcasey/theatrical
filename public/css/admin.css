@@ -1,0 +1,10 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+.uk-subnav-pill>.uk-active>a {background-color: #505050 !important;}
+/* .uk-subnav>* {padding-left: 20px !important; width: 100% !important;}
+*, *:before, *:after {box-sizing: content-box !important;} */
+
+table {font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}
+td, th {border: 1px solid #dddddd; text-align: left; padding: 8px;}
+tr:nth-child(even) {background-color: #dddddd;}
