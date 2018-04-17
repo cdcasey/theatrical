@@ -75,8 +75,6 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                 });
             }
             for (const actor of data[1]) {
-                console.log(actor);
-
                 if (actor.blackout_dates) {
                     for (const blackout_date of actor.blackout_dates) {
                         const event = { title: `${actor.character}`, start: blackout_date, className: 'blackout' };
