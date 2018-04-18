@@ -15,22 +15,20 @@ router.get('/logout', (req, res) => {
 router.post('/', (req, res) => {
   userModel.getByEmail(req.body.email)
     .then((user) => {
-      if(!user){
+      if (!user) {
         res.status(400).send('Nope');
-      }else{
+      } else {
         bcrypt.compare(req.body.password, user.password)
-          .then((success)=>{
-            // req.session.user = user;
+          .then((success) => {
+            req.session.user_id = user.id;
             res.redirect(`/users/${user.id}/profile`);
           })
-          .catch((err)=>{
+          .catch((err) => {
             res.status(400).redirect('/')
           })
       }
     })
 });
-
-
 
 
 module.exports = router;

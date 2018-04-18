@@ -6,7 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 // delete before deployment
 const morgan = require('morgan');
-
+const session = require('express-session')
 
 app.set('view engine', 'ejs');
 
@@ -22,6 +22,9 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname+"/public"));
 // delete before deployment
 app.use(morgan('common'));
+app.use(session({
+  secret: 'keyboard cat'
+}));
 
 const users = require('./routes/users');
 const productions = require('./routes/productions');
