@@ -24,6 +24,23 @@ $('#calendar').fullCalendar({
         console.log(view.calendar);
 
     },
+    customButtons: {
+        add_event: {
+            text: 'Add',
+            click: () => {
+                const addDate = document.getElementById('add-date');
+                console.log(addDate);
+                addDate.style.display ='block';
+                addDate.classList.add('uk-open');
+
+            }
+        }
+    },
+    header: {
+        right: 'prev,next today',
+        left: 'title',
+        center: 'add_event'
+    },
     events: {
         url: `${location.pathname}/fullcalendar`,
         cache: true
