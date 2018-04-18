@@ -6,7 +6,6 @@ exports.up = function (knex, Promise) {
         table.integer('play_id');
         table.foreign('play_id').references('plays.id').onDelete('SET NULL');
         table.jsonb('performance_dates');
-        table.jsonb('rehearsal_dates');
         table.timestamps(true, true);
     });
 };

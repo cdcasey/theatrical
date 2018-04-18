@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const productionsModel = require('../models/productions');
+const scenesModel = require('../models/scenes');
 
 router.get('/', (req, res, next) => {
     productionsModel.byUser(req.params.user_id)
@@ -59,18 +60,13 @@ router.get('/:id/admin', (req, res, next) => {
 router.get('/:id/admin/fullcalendar', (req, res, next) => {
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
-    Promise.all([production, cast])
+    const scenes = scenesModel.rehearsalDatesByProduction(req.params.id);
+    Promise.all([production, cast, scenes])
         .then((data) => {
             const calendarEvents = [];
             if (data[0].performance_dates) {
                 data[0].performance_dates.forEach((performance) => {
                     const event = { title: data[0].name, start: performance, className: 'performance' };
-                    calendarEvents.push(event);
-                });
-            }
-            if (data[0].rehearsal_dates) {
-                data[0].rehearsal_dates.forEach((rehearsal) => {
-                    const event = { title: data[0].name, start: rehearsal, className: 'rehearsal' };
                     calendarEvents.push(event);
                 });
             }
@@ -82,6 +78,30 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                     }
                 }
             }
+            // console.log(data[2]);
+
+            // let rehearsalEvent = { id: 0 };
+            // for (let i = 0; i < data[2].length; i++) {
+            //     const sceneRearsal = data[2][i];
+            //     // console.log(sceneRearsal);
+            //     if (i > 0 && sceneRearsal.id === sceneRearsal[i - 1].id) {
+            //         rehearsalEvent.title += `, ${sceneRearsal.character}`;
+            //     } else {
+            //         calendarEvents.push(rehearsalEvent);
+            //         rehearsalEvent = { id: sceneRearsal.id, title: `${sceneRearsal.name} ${sceneRearsal.character}`, start: sceneRearsal.start_time, end: sceneRearsal.end_time, className: 'rehearsal' };
+            //     }
+            // }
+            // for (const sceneRearsal of data[2]) {
+            //     let currentScene = sceneRearsal.id;
+            //     if (currentScene = rehearsalEvent.id) {
+            //     } else {
+            //     }
+            // if (currentScene === sceneRearsal.id) {
+            //     continue;
+            // } else {
+            //     currentScene = scene.id;
+            // }
+            // }
             // res.json({calendarEvents, data: data[1]});
             res.json(calendarEvents);
             // res.json({ production: data[0], actors: data[1] });
@@ -91,14 +111,14 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
         });
 });
 
-router.post('/', (req, res, next)=>{
-  productionsModel.create(req.body)
-  .then((production)=>{
-    res.status(201).json(production)
-  })
-  .catch((err)=>{
-    res.send(err)
-  });
+router.post('/', (req, res, next) => {
+    productionsModel.create(req.body)
+        .then((production) => {
+            res.status(201).json(production)
+        })
+        .catch((err) => {
+            res.send(err)
+        });
 });
 
 module.exports = router;
