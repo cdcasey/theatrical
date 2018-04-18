@@ -152,7 +152,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div id="addProduction" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
             <container id="addProductionContainer">
-                <form action="/users/<%=user.id%>/productions" method="POST">
+                <form action="/users/<%=user.id%>/productions" method="POST" enctype="multipart/form-data">
                   <fieldset class="uk-fieldset">
 
                       <legend class="uk-legend">Add a production</legend>
@@ -161,21 +161,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                           <input class="uk-input" id="prodName" type="text" name="name" placeholder="Name of production">
                       </div>
 
+                      <div class="uk-margin">
+                          <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="Performance dates">
+                      </div>
+
                       <!-- <div class="uk-margin">
-                          <input class="uk-input" id="prodDates" type="text" name="dates" placeholder="Performance dates">
-                      </div>
-
-                      <div class="uk-margin">
-                          <input class="uk-input" id="prodScenes" type="text" name="scenes" placeholder="Scenes">
-                      </div>
-
-                      <div class="uk-margin">
                           <input class="uk-input" id="prodCharacters" type="text" name="characters" placeholder="Characters">
                       </div>
 
                       <div class="uk-margin">
                           <input class="uk-input" id="prodActors" type="text" name="actor" placeholder="Actors">
                       </div> -->
+
+                      <div class="uk-margin">
+                          <input id="fileSelect" name="csv" type="file" accept=".csv,     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain" />
+                      </div>
 
                       <div class="uk-margin">
                           <button id="productionCreate" class="uk-button uk-button-default btn btn-action">Submit</button>
