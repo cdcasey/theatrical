@@ -79,33 +79,14 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                     }
                 }
             }
-            // console.log(data[2]);
 
-            // let rehearsalEvent = { id: 0 };
-            // for (let i = 0; i < data[2].length; i++) {
-            //     const sceneRearsal = data[2][i];
-            //     // console.log(sceneRearsal);
-            //     if (i > 0 && sceneRearsal.id === sceneRearsal[i - 1].id) {
-            //         rehearsalEvent.title += `, ${sceneRearsal.character}`;
-            //     } else {
-            //         calendarEvents.push(rehearsalEvent);
-            //         rehearsalEvent = { id: sceneRearsal.id, title: `${sceneRearsal.name} ${sceneRearsal.character}`, start: sceneRearsal.start_time, end: sceneRearsal.end_time, className: 'rehearsal' };
-            //     }
-            // }
-            // for (const sceneRearsal of data[2]) {
-            //     let currentScene = sceneRearsal.id;
-            //     if (currentScene = rehearsalEvent.id) {
-            //     } else {
-            //     }
-            // if (currentScene === sceneRearsal.id) {
-            //     continue;
-            // } else {
-            //     currentScene = scene.id;
-            // }
-            // }
-            // res.json({calendarEvents, data: data[1]});
+            for (const sceneRearsal of data[2]) {
+                const rehearsalEvent = { id: sceneRearsal.id, title: `${sceneRearsal.name} ${sceneRearsal.character}`, start: sceneRearsal.start_time, end: sceneRearsal.end_time, className: 'rehearsal' };
+                calendarEvents.push(rehearsalEvent);
+            }
+
             res.json(calendarEvents);
-            // res.json({ production: data[0], actors: data[1] });
+
         })
         .catch((err) => {
             next(err);
