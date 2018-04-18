@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 const productionsModel = require('../models/productions');
 const scenesModel = require('../models/scenes');
+const knex = require('../db/knex');
 
 router.get('/', (req, res, next) => {
     productionsModel.byUser(req.params.user_id)
@@ -112,13 +113,38 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    productionsModel.create(req.body)
-        .then((production) => {
-            res.status(201).json(production)
-        })
-        .catch((err) => {
-            res.send(err)
-        });
+  // console.log("BODY", Object.keys(req.body));
+  let production = {
+    name: req.body.name,
+    performance_dates: JSON.stringify(req.body.performance_dates)
+  }
+   productionsModel.create(production)
+       .then((production) => {
+         let myProduction = {
+           user_id: req.params.user_id,
+           production_id: production[0].id,
+           production_role_id: 1
+         }
+         console.log(req.body)
+         knex('users_productions')
+         .insert(myProduction)
+         .then(() => {
+           res.redirect(`/users/${req.params.user_id}/profile`)
+         })
+       })
+       .catch((err) => {
+           next(err)
+       });
 });
+//
+// router.post('/', (req, res, next) => {
+//     productionsModel.create(req.body)
+//         .then((production) => {
+//             res.status(201).json(production)
+//         })
+//         .catch((err) => {
+//             res.send(err)
+//         });
+// });
 
 module.exports = router;
