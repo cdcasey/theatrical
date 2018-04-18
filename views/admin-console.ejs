@@ -104,6 +104,71 @@
     </li>
 </ul>
 
+<div id="add-date" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <container id="add-date_Container">
+          <form action="#" method="POST">
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend">Sign In</legend>
+
+                <div class="uk-margin">
+                    <select lass="uk-input" id="txtEmail" type="email" name="email" placeholder="Email">
+                      <option value="volvo">Rehearsal</option>
+                      <option value="saab">Performance</option>
+                      <option value="fiat">Dress rehearsal</option>
+                    </select>
+                </div>
+
+                <!-- <div class="uk-margin">
+                    <input class="uk-input" id="txtPassword" type="password" name="password" placeholder="Password">
+                    <div class="nativeDatePicker"> -->
+      <label for="bday">Enter the date</label>
+      <input type="date" id="bday" name="bday">
+      <span class="validity"></span>
+    <!-- </div> -->
+    <!-- <p class="fallbackLabel">Enter your birthday:</p>
+    <div class="fallbackDatePicker">
+      <span>
+        <label for="day">Day:</label>
+        <select id="day" name="day">
+        </select>
+      </span>
+      <span>
+        <label for="month">Month:</label>
+        <select id="month" name="month">
+          <option selected>January</option>
+          <option>February</option>
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
+        </select>
+      </span> -->
+      <!-- <span>
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+        </select>
+      </span>
+    </div> -->
+                <!-- </div> -->
+
+                <div class="uk-margin">
+                    <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Add</button>
+                </div>
+
+            </fieldset>
+          </form>
+</container>
+    </div>
+</div>
+
 
 
 <!-- Footer -->
