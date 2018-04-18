@@ -45,8 +45,8 @@
         <%# } %> -->
       </div>
     </div>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
+    <a href="/users/<%=user%>/profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
+    <a href="/auth/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout</a>
   </div>
 
   <!-- Navbar on small screens -->
@@ -59,7 +59,7 @@
         <%# } %> -->
       </div>
     </div>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Profile</a>
+    <a href="/users/<%=user%>/profile" class="w3-bar-item w3-button w3-padding-large">Profile</a>
     <a href="#login" class="w3-bar-item w3-button w3-padding-large">Login</a>
     <a href="#register" class="w3-bar-item w3-button w3-padding-large">Register</a>
   </div>

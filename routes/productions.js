@@ -51,7 +51,8 @@ router.get('/:id/admin', (req, res, next) => {
     const cast = productionsModel.blackoutDates(req.params.id);
     Promise.all([production, cast])
         .then((data) => {
-            res.render('admin-console', { production: data[0], actors: data[1] });
+            res.render('admin-console', { user: req.session.user_id, production: data[0], actors: data[1] });
+            console.log(user)
         })
         .catch((err) => {
             next(err);
