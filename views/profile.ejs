@@ -152,7 +152,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div id="addProduction" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
             <container id="addProductionContainer">
-                <form action="#" method="POST">
+                <form action="/users/<%=user.id%>/productions" method="POST">
                   <fieldset class="uk-fieldset">
 
                       <legend class="uk-legend">Add a production</legend>
@@ -161,7 +161,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                           <input class="uk-input" id="prodName" type="text" name="name" placeholder="Name of production">
                       </div>
 
-                      <div class="uk-margin">
+                      <!-- <div class="uk-margin">
                           <input class="uk-input" id="prodDates" type="text" name="dates" placeholder="Performance dates">
                       </div>
 
@@ -175,10 +175,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
                       <div class="uk-margin">
                           <input class="uk-input" id="prodActors" type="text" name="actor" placeholder="Actors">
-                      </div>
+                      </div> -->
 
                       <div class="uk-margin">
-                          <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Submit</button>
+                          <button id="productionCreate" class="uk-button uk-button-default btn btn-action">Submit</button>
                       </div>
 
                   </fieldset>
