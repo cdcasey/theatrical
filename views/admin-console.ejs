@@ -151,60 +151,26 @@
     </li>
 </ul>
 
+<!-- Add Date Modal -->
 <div id="add-date" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="add-date_Container">
           <form action="/users/<%=user%>/productions/<%=the_production.id%>?_method=PATCH" method="POST">
             <fieldset class="uk-fieldset">
 
-                <legend class="uk-legend">Sign In</legend>
+                <legend class="uk-legend">Add Date</legend>
 
                 <div class="uk-margin">
                     <select class="uk-input" id="type" name="type">
-                      <option value="rehearsal">Rehearsal</option>
+                      <option value="" selected disabled>Select One</option>
+                      <option value="rehearsal" disabled>Rehearsal</option>
                       <option value="performance">Performance</option>
                     </select>
+                  </div>
+                <div class="uk-margin">
+                  <label for="date">Enter the date</label>
+                  <input class="uk-input" type="date" id="date" name="date">
                 </div>
-
-                <!-- <div class="uk-margin">
-                    <input class="uk-input" id="txtPassword" type="password" name="password" placeholder="Password">
-                    <div class="nativeDatePicker"> -->
-      <label for="bday">Enter the date</label>
-      <input type="date" id="bday" name="bday">
-      <span class="validity"></span>
-    <!-- </div> -->
-    <!-- <p class="fallbackLabel">Enter your birthday:</p>
-    <div class="fallbackDatePicker">
-      <span>
-        <label for="day">Day:</label>
-        <select id="day" name="day">
-        </select>
-      </span>
-      <span>
-        <label for="month">Month:</label>
-        <select id="month" name="month">
-          <option selected>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
-      </span> -->
-      <!-- <span>
-        <label for="year">Year:</label>
-        <select id="year" name="year">
-        </select>
-      </span>
-    </div> -->
-                <!-- </div> -->
-
                 <div class="uk-margin">
                     <button id="btnLogin" class="uk-button uk-button-default btn btn-action">Add</button>
                 </div>
