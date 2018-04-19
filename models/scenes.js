@@ -6,6 +6,14 @@ const bcrypt = require('bcrypt-as-promised');
 
 class Scenes extends Resource {
 
+    scenesByProduction(productionId) {
+        return knex(this.table)
+            .select(`${this.table}.name`)
+            .join('productions', 'productions.play_id', `${this.table}.play_id`)
+            .where('productions.id', productionId)
+            .orderBy(`${this.table}.id`);
+    }
+
     rehearsalDatesByProduction(productionId) {
         return knex(this.table)
             .select(`rehearsal_dates.id`, 'scenes.name', 'start_time', 'end_time', 'characters.name as character')

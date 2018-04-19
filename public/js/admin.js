@@ -4,6 +4,13 @@
 const user_id = location.pathname.match(/users\/(\d+)/)[1];
 const production_id = location.pathname.match(/productions\/(\d+)/)[1];
 const addDate = document.getElementById('add-date');
+const type = document.getElementById('type');
+const sceneSelect = document.getElementById('scene-div');
+type.addEventListener('change', function(event) {
+    if (this.value === 'rehearsal') {
+        sceneSelect.classList.remove('uk-hidden');
+    };
+})
 
 window.onclick = function (event) {
     if (event.target === addDate) {
