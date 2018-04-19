@@ -29,8 +29,20 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.patch('/:id', (req, res, next) => {
-    console.log("BODY", req.body);
-    res.redirect(req.originalUrl.split('?')[0] + '/admin');
+    // console.log("BODY", req.body);
+    productionsModel.getById(req.params.id)
+        .then((production) => {
+            let performanceDates = production.performance_dates;
+            performanceDates.push(req.body.date);
+            productionsModel.update(req.params.id, { performance_dates: JSON.stringify(performanceDates) })
+                .then((data) => {
+                    res.redirect(req.originalUrl.split('?')[0] + '/admin');
+
+                }).catch((err) => {
+                    next(err);
+                });
+            ;
+        });
 });
 
 router.get('/:id/cast', (req, res, next) => {
@@ -191,12 +203,12 @@ function processActorData(actor, actorInfo, production_id) {
 }
 
 router.delete('/:id', (req, res) => {
-  knex('productions')
-    .where('id', req.params.id)
-    .del()
-    .then(function (data){
-      res.redirect(`/users/${req.params.user_id}/profile`)
-    })
+    knex('productions')
+        .where('id', req.params.id)
+        .del()
+        .then(function (data) {
+            res.redirect(`/users/${req.params.user_id}/profile`)
+        })
 });
 
 module.exports = router;
