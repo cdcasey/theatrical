@@ -125,5 +125,14 @@ router.post('/', (req, res, next) => {
        });
 });
 
+router.delete('/:id', (req, res) => {
+  knex('productions')
+    .where('id', req.params.id)
+    .del()
+    .then(function (shop){
+      res.redirect('/')
+    })
+});
+
 
 module.exports = router;
