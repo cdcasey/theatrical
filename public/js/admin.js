@@ -6,7 +6,7 @@ const production_id = location.pathname.match(/productions\/(\d+)/)[1];
 const addDate = document.getElementById('add-date');
 const type = document.getElementById('type');
 const sceneSelect = document.getElementById('scene-div');
-type.addEventListener('change', function(event) {
+type.addEventListener('change', function (event) {
     if (this.value === 'rehearsal') {
         sceneSelect.classList.remove('uk-hidden');
     };
@@ -20,35 +20,32 @@ window.onclick = function (event) {
 }
 
 $('#calendar').fullCalendar({
-    editable: true,
+    editable: false,
     // put your options and callbacks here
     eventClick: function (calEvent, jsEvent, view) {
 
-        alert('Event: ' + calEvent.title);
-        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        alert('View: ' + view.name);
-        console.log(jsEvent.target);
+        alert(`${calEvent.className}: ${calEvent.title}`);
+        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        // alert('View: ' + view.name);
+        // console.log(jsEvent.target);
 
         // change the border color just for fun
-        $(this).css('border-color', 'red');
+        // $(this).css('border-color', 'red');
     },
 
     dayClick: function (date, jsEvent, view) {
-        // alert('a day has been clicked!');
-        console.log(date.calendar());
-        console.log(jsEvent.target);
-        console.log(view.calendar);
-
+        addDate.style.display = 'block';
+        addDate.classList.add('uk-open');
     },
-    customButtons: {
-        add_event: {
-            text: 'Add',
-            click: () => {
-                addDate.style.display = 'block';
-                addDate.classList.add('uk-open');
-            }
-        }
-    },
+    // customButtons: {
+    //     add_event: {
+    //         text: 'Add',
+    //         click: () => {
+    //             addDate.style.display = 'block';
+    //             addDate.classList.add('uk-open');
+    //         }
+    //     }
+    // },
     header: {
         right: 'prev,next today',
         left: 'title',

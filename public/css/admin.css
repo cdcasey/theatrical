@@ -34,7 +34,6 @@ tr:nth-child(even) {background-color: #dddddd;}
 
 .fc-day-number, .fc-day-header {color: black !important;}
 
-.fc-view-container {
-    position: relative;
-    z-index: -1;
+.tnav {
+  z-index: 2;
 }
