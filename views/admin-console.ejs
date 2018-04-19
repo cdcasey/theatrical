@@ -40,9 +40,9 @@
     <div class="dropdown">
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-white">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content" style="margin-top: 50px;">
-        <!-- <%# for(production of productions){ %>
-          <a href="#"><%#= production.name %></a>
-        <%# } %> -->
+        <% for(production of productions){ %>
+          <a href="/users/<%=user%>/productions/<%=production.id%>/admin"><%= production.name %></a>
+        <% } %>
       </div>
     </div>
     <a href="/users/<%=user%>/profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
@@ -69,7 +69,7 @@
 
 <br>
 <br>
-<h3 style="text-align: center"><%= production.name %></h3>
+<h3 style="text-align: center"><%= the_production.name %></h3>
 <!-- <div class="id-field"><%= production.id %></div> -->
 <ul class="uk-subnav uk-subnav-pill" uk-switcher>
     <li style="width:50%; text-align: center;"><a href="#">Production Schedule</a></li>
@@ -83,6 +83,49 @@
 
     <!-- Production Schedule -->
     <li>
+      <div class="uk-margin" style="text-align: center;">
+          <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #addActor">Add</button>
+      </div>
+
+      <!-- Add Actor Modal -->
+      <div id="addActor" uk-modal>
+       <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Add actor</h2>
+        <form action="#" method="POST">
+          <fieldset class="uk-fieldset">
+
+            <div class="uk-margin">
+              <input class="uk-input" id="actor_first_name" name="first_name" type="first_name" placeholder="First name" value="">
+            </div>
+
+            <div class="uk-margin">
+              <input class="uk-input" id="actor_last_name" name="last_name" type="last_name" placeholder="Last name" value="">
+            </div>
+
+            <div class="uk-margin">
+              <input class="uk-input" id="actor_email" name="email" type="email" placeholder="Email" value="">
+            </div>
+
+            <div class="uk-margin">
+              <input class="uk-input" id="actor_phone" name="phone" type="phone" placeholder="Phone ('555-555-5555')" value="">
+            </div>
+
+            <div class="uk-margin">
+              <input class="uk-input" id="actor_character" name="character" type="text" placeholder="Part" value="">
+            </div>
+
+            <div class="uk-margin">
+              <input class="uk-input" id="blackout_dates" name="blackout_dates" type="text" placeholder="Blackout dates ('2018-12-5, 2018-11-2, 2018-4-12, etc...')" value="">
+            </div>
+
+            <div class="uk-margin">
+              <button id="btnEdit" class="uk-button uk-button-default btn btn-action">Submit</button>
+            </div>
+
+          </fieldset>
+        </form>
+       </div>
+      </div>
       <table>
           <tr>
             <th>Name</th>
