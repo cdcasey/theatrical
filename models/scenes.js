@@ -8,7 +8,7 @@ class Scenes extends Resource {
 
     scenesByProduction(productionId) {
         return knex(this.table)
-            .select(`${this.table}.name`)
+            .select(`${this.table}.id`, `${this.table}.name`)
             .join('productions', 'productions.play_id', `${this.table}.play_id`)
             .where('productions.id', productionId)
             .orderBy(`${this.table}.id`);

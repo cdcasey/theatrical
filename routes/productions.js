@@ -32,16 +32,29 @@ router.patch('/:id', (req, res, next) => {
     // console.log("BODY", req.body);
     productionsModel.getById(req.params.id)
         .then((production) => {
-            let performanceDates = production.performance_dates;
-            performanceDates.push(req.body.date);
-            productionsModel.update(req.params.id, { performance_dates: JSON.stringify(performanceDates) })
-                .then((data) => {
-                    res.redirect(req.originalUrl.split('?')[0] + '/admin');
-
-                }).catch((err) => {
-                    next(err);
-                });
-            ;
+            if (req.body.type === 'performance') {
+                let performanceDates = production.performance_dates;
+                performanceDates.push(req.body.date);
+                productionsModel.update(req.params.id, { performance_dates: JSON.stringify(performanceDates) })
+                    .then((data) => {
+                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                    }).catch((err) => {
+                        next(err);
+                    });
+            } else if (req.body.type === 'rehearsal') {
+                const rehearsal = {
+                    scene_id: req.body.scene_id,
+                    production_id: req.params.id,
+                    start_time: req.body.date
+                }
+                knex('rehearsal_dates')
+                    .insert(rehearsal)
+                    .then((data) => {
+                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                    }).catch((err) => {
+                        next(err);
+                    });
+            }
         });
 });
 
@@ -69,11 +82,12 @@ router.get('/:id/admin', (req, res, next) => {
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
     const productions = productionsModel.byUser(req.session.user_id);
-    Promise.all([production, cast, productions])
+    const scenes = scenesModel.scenesByProduction(req.params.id);
+    Promise.all([production, cast, productions, scenes])
         .then((data) => {
             charactersModel.byPlayId(data[0].play_id)
                 .then((characters) => {
-                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions: data[2], characters });
+                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions: data[2], characters, scenes: data[3] });
                 })
         })
         .catch((err) => {
@@ -84,7 +98,7 @@ router.get('/:id/admin', (req, res, next) => {
 router.get('/:id/admin/fullcalendar', (req, res, next) => {
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
-    const scenes = scenesModel.rehearsalDatesByProduction(req.params.id);
+    const scenes = scenesModel.rehearsalDatesByProduction(req.params.id); ``
     Promise.all([production, cast, scenes])
         .then((data) => {
             const calendarEvents = [];
