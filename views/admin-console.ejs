@@ -111,7 +111,12 @@
             </div>
 
             <div class="uk-margin">
-              <input class="uk-input" id="actor_character" name="character" type="text" placeholder="Part" value="">
+                <select class="uk-input" name="play_id" id="actor_character">
+                  <option value="" disabled selected>Select Part</option>
+                <% for(character of characters){ %>
+                  <option value="<%= character.id %>"><%= character.name %></option>
+                <% } %>
+                </select>
             </div>
 
             <div class="uk-margin">

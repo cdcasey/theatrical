@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 const productionsModel = require('../models/productions');
 const scenesModel = require('../models/scenes');
+const charactersModel = require('../models/characters');
 const knex = require('../db/knex');
 
 router.get('/', (req, res, next) => {
@@ -57,8 +58,10 @@ router.get('/:id/admin', (req, res, next) => {
     const productions = productionsModel.byUser(req.session.user_id);
     Promise.all([production, cast, productions])
         .then((data) => {
-            res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions:data[2] });
-            console.log(user)
+            charactersModel.byPlayId(data[0].play_id)
+                .then((characters) => {
+                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions:data[2], characters });
+                })
         })
         .catch((err) => {
             next(err);
