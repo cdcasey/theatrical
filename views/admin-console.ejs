@@ -40,9 +40,9 @@
     <div class="dropdown">
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-white">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content" style="margin-top: 50px;">
-        <!-- <%# for(production of productions){ %>
-          <a href="#"><%#= production.name %></a>
-        <%# } %> -->
+        <% for(production of productions){ %>
+          <a href="/users/<%=user%>/productions/<%=production.id%>/admin"><%= production.name %></a>
+        <% } %>
       </div>
     </div>
     <a href="/users/<%=user%>/profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
@@ -69,7 +69,7 @@
 
 <br>
 <br>
-<h3 style="text-align: center"><%= production.name %></h3>
+<h3 style="text-align: center"><%= the_production.name %></h3>
 <!-- <div class="id-field"><%= production.id %></div> -->
 <ul class="uk-subnav uk-subnav-pill" uk-switcher>
     <li style="width:50%; text-align: center;"><a href="#">Production Schedule</a></li>

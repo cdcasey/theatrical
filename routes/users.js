@@ -36,7 +36,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:id/profile', (req, res, next) => {
-    const productions = productionsModel.byUser(req.params.id);
+    const productions = productionsModel.byUser(req.session.user_id);
     usersModel.getById(req.params.id)
         .then((user) => {
             productions.then((productions) => {
