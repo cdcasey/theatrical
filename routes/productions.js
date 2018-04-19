@@ -29,7 +29,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.patch('/:id', (req, res, next) => {
-    // console.log("BODY", req.body);
     productionsModel.getById(req.params.id)
         .then((production) => {
             if (req.body.type === 'performance') {
@@ -132,7 +131,6 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                 if (sceneObjs.hasOwnProperty(key)) {
                     const element = sceneObjs[key];
                     const rehearsalEvent = { id: key, title: `${element.name} ${element.characters}`, start: element.start, end: element.end, className: 'rehearsal' };
-                    console.log(rehearsalEvent);
                     calendarEvents.push(rehearsalEvent);
                 }
             }
@@ -214,8 +212,6 @@ router.post('/:id/add_cast', (req, res, next) => {
 
 function processActorData(actor, actorInfo, production_id) {
     const blackoutDates = JSON.stringify(actorInfo.blackout_dates.replace(' ', '').split(','));
-    console.log(blackoutDates);
-
     const userProduction = {
         user_id: actor.id,
         production_id: production_id,
