@@ -107,16 +107,15 @@
 <div id="add-date" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="add-date_Container">
-          <form action="#" method="POST">
+          <form action="/users/<%=user%>/productions/<%=production.id%>?_method=PATCH" method="POST">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Sign In</legend>
 
                 <div class="uk-margin">
-                    <select lass="uk-input" id="txtEmail" type="email" name="email" placeholder="Email">
-                      <option value="volvo">Rehearsal</option>
-                      <option value="saab">Performance</option>
-                      <option value="fiat">Dress rehearsal</option>
+                    <select class="uk-input" id="type" name="type">
+                      <option value="rehearsal">Rehearsal</option>
+                      <option value="performance">Performance</option>
                     </select>
                 </div>
 
