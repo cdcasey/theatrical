@@ -29,19 +29,31 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.patch('/:id', (req, res, next) => {
-    // console.log("BODY", req.body);
     productionsModel.getById(req.params.id)
         .then((production) => {
-            let performanceDates = production.performance_dates;
-            performanceDates.push(req.body.date);
-            productionsModel.update(req.params.id, { performance_dates: JSON.stringify(performanceDates) })
-                .then((data) => {
-                    res.redirect(req.originalUrl.split('?')[0] + '/admin');
-
-                }).catch((err) => {
-                    next(err);
-                });
-            ;
+            if (req.body.type === 'performance') {
+                let performanceDates = production.performance_dates;
+                performanceDates.push(req.body.date);
+                productionsModel.update(req.params.id, { performance_dates: JSON.stringify(performanceDates) })
+                    .then((data) => {
+                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                    }).catch((err) => {
+                        next(err);
+                    });
+            } else if (req.body.type === 'rehearsal') {
+                const rehearsal = {
+                    scene_id: req.body.scene_id,
+                    production_id: req.params.id,
+                    start_time: req.body.date
+                }
+                knex('rehearsal_dates')
+                    .insert(rehearsal)
+                    .then((data) => {
+                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                    }).catch((err) => {
+                        next(err);
+                    });
+            }
         });
 });
 
@@ -69,11 +81,12 @@ router.get('/:id/admin', (req, res, next) => {
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
     const productions = productionsModel.byUser(req.session.user_id);
-    Promise.all([production, cast, productions])
+    const scenes = scenesModel.scenesByProduction(req.params.id);
+    Promise.all([production, cast, productions, scenes])
         .then((data) => {
             charactersModel.byPlayId(data[0].play_id)
                 .then((characters) => {
-                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions: data[2], characters });
+                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions: data[2], characters, scenes: data[3] });
                 })
         })
         .catch((err) => {
@@ -84,7 +97,7 @@ router.get('/:id/admin', (req, res, next) => {
 router.get('/:id/admin/fullcalendar', (req, res, next) => {
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
-    const scenes = scenesModel.rehearsalDatesByProduction(req.params.id);
+    const scenes = scenesModel.rehearsalDatesByProduction(req.params.id); ``
     Promise.all([production, cast, scenes])
         .then((data) => {
             const calendarEvents = [];
@@ -94,6 +107,7 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                     calendarEvents.push(event);
                 });
             }
+
             for (const actor of data[1]) {
                 if (actor.blackout_dates) {
                     for (const blackout_date of actor.blackout_dates) {
@@ -103,9 +117,22 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                 }
             }
 
+            // consolidate reharsal info so rehearsals aren't listed as a separate events for each character
+            let sceneObjs = {};
             for (const sceneRearsal of data[2]) {
-                const rehearsalEvent = { id: sceneRearsal.id, title: `${sceneRearsal.name} ${sceneRearsal.character}`, start: sceneRearsal.start_time, end: sceneRearsal.end_time, className: 'rehearsal' };
-                calendarEvents.push(rehearsalEvent);
+                if (!sceneObjs[sceneRearsal.id]) { sceneObjs[sceneRearsal.id] = {}; }
+                sceneObjs[sceneRearsal.id].name = sceneRearsal.name;
+                sceneObjs[sceneRearsal.id].characters = sceneObjs[sceneRearsal.id].characters ? sceneObjs[sceneRearsal.id].characters + ', ' + sceneRearsal.character : sceneRearsal.character;
+                sceneObjs[sceneRearsal.id].start = sceneRearsal.start_time;
+                sceneObjs[sceneRearsal.id].end = sceneRearsal.end_time;
+            }
+
+            for (const key in sceneObjs) {
+                if (sceneObjs.hasOwnProperty(key)) {
+                    const element = sceneObjs[key];
+                    const rehearsalEvent = { id: key, title: `${element.name} ${element.characters}`, start: element.start, end: element.end, className: 'rehearsal' };
+                    calendarEvents.push(rehearsalEvent);
+                }
             }
 
             res.json(calendarEvents);
@@ -185,8 +212,6 @@ router.post('/:id/add_cast', (req, res, next) => {
 
 function processActorData(actor, actorInfo, production_id) {
     const blackoutDates = JSON.stringify(actorInfo.blackout_dates.replace(' ', '').split(','));
-    console.log(blackoutDates);
-
     const userProduction = {
         user_id: actor.id,
         production_id: production_id,

@@ -163,13 +163,22 @@
                 <div class="uk-margin">
                     <select class="uk-input" id="type" name="type">
                       <option value="" selected disabled>Select One</option>
-                      <option value="rehearsal" disabled>Rehearsal</option>
+                      <option value="rehearsal">Rehearsal</option>
                       <option value="performance">Performance</option>
                       <option value="blackout" disabled>Blackout</option>
                     </select>
                   </div>
+                  <div class="uk-margin uk-hidden" id="scene-div">
+                      <label for="scene">Pick the scene to be rehearsed:</label>
+                      <select class="uk-input" id="scene" name="scene_id">
+                        <option value="" selected disabled>Select One</option>
+                        <% for(scene of scenes){ %>
+                          <option value="<%= scene.id %>"><%= scene.name %></option>
+                        <% } %>
+                      </select>
+                  </div>
                 <div class="uk-margin">
-                  <label for="date">Enter the date</label>
+                  <label for="date">Enter the date:</label>
                   <input class="uk-input" type="date" id="date" name="date">
                 </div>
                 <div class="uk-margin">
