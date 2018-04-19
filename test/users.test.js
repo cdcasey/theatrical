@@ -51,7 +51,7 @@ describe('Tests for users routes', () => {
     it('POST /auth should return true when the correct email and password are given', function (done) {
         request.post('/auth')
             .send({ email: 'tbarnes62@austin.rr.com', password: 'tim' })
-            .expect(200)
+            .expect(302)
             .end((err) => {
                 done(err);
             })
