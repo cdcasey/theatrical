@@ -3,6 +3,15 @@
 // console.log(location.pathname.match(/productions\/(\d+)/)[1]);
 const user_id = location.pathname.match(/users\/(\d+)/)[1];
 const production_id = location.pathname.match(/productions\/(\d+)/)[1];
+const addDate = document.getElementById('add-date');
+
+window.onclick = function (event) {
+    if (event.target === addDate) {
+        addDate.style = "";
+        addDate.classList.remove('uk-open');
+    }
+}
+
 $('#calendar').fullCalendar({
     editable: true,
     // put your options and callbacks here
@@ -28,11 +37,8 @@ $('#calendar').fullCalendar({
         add_event: {
             text: 'Add',
             click: () => {
-                const addDate = document.getElementById('add-date');
-                console.log(addDate);
-                addDate.style.display ='block';
+                addDate.style.display = 'block';
                 addDate.classList.add('uk-open');
-
             }
         }
     },
