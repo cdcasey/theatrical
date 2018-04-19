@@ -36,7 +36,7 @@
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3w3-hover-white">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3w3-hover-white">TheatriCAL</a>
     <div class="dropdown">
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-white">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content" style="margin-top: 50px;">
@@ -70,7 +70,6 @@
 <br>
 <br>
 <h3 style="text-align: center"><%= the_production.name %></h3>
-<!-- <div class="id-field"><%= production.id %></div> -->
 <ul class="uk-subnav uk-subnav-pill" uk-switcher>
     <li style="width:50%; text-align: center;"><a href="#">Production Schedule</a></li>
     <li style="width:50%; text-align: center;"><a href="#">Cast List</a></li>
@@ -91,7 +90,7 @@
       <div id="addActor" uk-modal>
        <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Add actor</h2>
-        <form action="#" method="POST">
+        <form action="/users/<%= user %>/productions/<%= the_production.id %>/add_cast" method="POST">
           <fieldset class="uk-fieldset">
 
             <div class="uk-margin">
@@ -103,7 +102,7 @@
             </div>
 
             <div class="uk-margin">
-              <input class="uk-input" id="actor_email" name="email" type="email" placeholder="Email" value="">
+              <input class="uk-input" id="actor_email" name="email" type="email" placeholder="Email (required)" value="">
             </div>
 
             <div class="uk-margin">
@@ -111,7 +110,12 @@
             </div>
 
             <div class="uk-margin">
-              <input class="uk-input" id="actor_character" name="character" type="text" placeholder="Part" value="">
+                <select class="uk-input" name="character_id" id="actor_character">
+                  <option value="" disabled selected>Select Part</option>
+                <% for(character of characters){ %>
+                  <option value="<%= character.id %>"><%= character.name %></option>
+                <% } %>
+                </select>
             </div>
 
             <div class="uk-margin">
@@ -150,7 +154,7 @@
 <div id="add-date" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="add-date_Container">
-          <form action="/users/<%=user%>/productions/<%=production.id%>?_method=PATCH" method="POST">
+          <form action="/users/<%=user%>/productions/<%=the_production.id%>?_method=PATCH" method="POST">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Add date</legend>

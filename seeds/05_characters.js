@@ -28,7 +28,24 @@ exports.seed = function (knex, Promise) {
         { name: "Friar Lawrence", play_id: 1 },
         { name: "Friar John", play_id: 1 },
         { name: "Chorus", play_id: 1 },
-        { name: "Apothecary", play_id: 1 }
+        { name: "Apothecary", play_id: 1 },
+        { name: "Benedick", play_id: 2 },
+        { name: "Leonato", play_id: 2 },
+        { name: "Don Pedro", play_id: 2 },
+        { name: "Dogberry", play_id: 2 },
+        { name: "Don John", play_id: 2 },
+        { name: "Borachio", play_id: 2 },
+        { name: "Friar Francis", play_id: 2 },
+        { name: "Conrade", play_id: 2 },
+        { name: "George Seacole", play_id: 2 },
+        { name: "Hero", play_id: 2 },
+        { name: "Verges", play_id: 2 },
+        { name: "Beatrice", play_id: 2 },
+        { name: "Claudio", play_id: 2 },
+        { name: "Balthasar", play_id: 2 },
+        { name: "Ursula", play_id: 2 },
+        { name: "Margaret", play_id: 2 },
+        { name: "Antonio", play_id: 2 },
       ]);
     });
 };
