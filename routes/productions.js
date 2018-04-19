@@ -130,14 +130,6 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/:id/add_cast', (req, res, next) => {
-    // console.log(req.body);
-    // { first_name: 'asd',
-    // last_name: 'asfasf',
-    // email: 'safsd@sdfds.netwe',
-    // phone: 'asfasdsad',
-    // character_id: '2',
-    // blackout_dates: '2018-4-19' }
-
     const actorUserData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -197,5 +189,14 @@ function processActorData(actor, actorInfo, production_id) {
     // SHOULD BE UPDATED INSTEAD OF INSERTED
     return Promise.all([knex('users_productions').insert(userProduction), knex('users_characters').insert(userCharacter)])
 }
+
+router.delete('/:id', (req, res) => {
+  knex('productions')
+    .where('id', req.params.id)
+    .del()
+    .then(function (data){
+      res.redirect(`/users/${req.params.user_id}/profile`)
+    })
+});
 
 module.exports = router;
