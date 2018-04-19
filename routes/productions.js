@@ -102,8 +102,6 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  // console.log("BODY", Object.keys(req.body));
-  console.log(req.body);
   const performanceDates = req.body.performance_dates.split(',');
   let production = {
     name: req.body.name,
@@ -126,15 +124,6 @@ router.post('/', (req, res, next) => {
            next(err)
        });
 });
-//
-// router.post('/', (req, res, next) => {
-//     productionsModel.create(req.body)
-//         .then((production) => {
-//             res.status(201).json(production)
-//         })
-//         .catch((err) => {
-//             res.send(err)
-//         });
-// });
+
 
 module.exports = router;
