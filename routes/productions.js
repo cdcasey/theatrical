@@ -129,7 +129,7 @@ router.delete('/:id', (req, res) => {
   knex('productions')
     .where('id', req.params.id)
     .del()
-    .then(function (shop){
+    .then(function (production){
       res.redirect('/')
     })
 });
