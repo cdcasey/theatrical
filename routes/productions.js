@@ -26,6 +26,11 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
+router.patch('/:id', (req, res, next) => {
+    console.log("BODY", req.body);
+    res.redirect(req.originalUrl.split('?')[0] + '/admin');
+});
+
 router.get('/:id/cast', (req, res, next) => {
     productionsModel.castList(req.params.id)
         .then((cast) => {
@@ -47,6 +52,8 @@ router.get('/:id/blackoutdates', (req, res, next) => {
 });
 
 router.get('/:id/admin', (req, res, next) => {
+    console.log("USER", req.session.user);
+
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
     const productions = productionsModel.byUser(req.session.user_id);
