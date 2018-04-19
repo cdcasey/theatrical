@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const usersModel = require('../models/users');
 const productionsModel = require('../models/productions');
+const playsModel = require('../models/plays');
 
 router.get('/', (req, res, next) => {
     usersModel.all()
@@ -36,12 +37,13 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:id/profile', (req, res, next) => {
-    const productions = productionsModel.byUser(req.session.user_id);
-    usersModel.getById(req.params.id)
-        .then((user) => {
-            productions.then((productions) => {
-                res.render('profile', { user, productions });
-            })
+    const user = usersModel.getById(req.session.user_id);
+    const productions = productionsModel.byUser(req.params.id);
+    const plays = playsModel.all();
+    console.log(req.session);
+    Promise.all([user, productions, plays])
+        .then((data) => {
+            res.render('profile', { user: data[0], productions: data[1], plays: data[2] });
         })
         .catch((err) => {
             next(err);
@@ -58,15 +60,15 @@ router.patch('/:id', (req, res, next) => {
         })
 });
 
-router.delete('/:id', (req, res)=>{
+router.delete('/:id', (req, res) => {
     usersModel.where('id', id)
-    .del()
-    .then(()=>{
-      res.send('Deleted user')
-    })
-    .catch((err)=>{
-      res.send(err)
-    })
+        .del()
+        .then(() => {
+            res.send('Deleted user')
+        })
+        .catch((err) => {
+            res.send(err)
+        })
 })
 
 module.exports = router;

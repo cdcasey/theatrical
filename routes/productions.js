@@ -52,8 +52,6 @@ router.get('/:id/blackoutdates', (req, res, next) => {
 });
 
 router.get('/:id/admin', (req, res, next) => {
-    console.log("USER", req.session.user);
-
     const production = productionsModel.getById(req.params.id);
     const cast = productionsModel.blackoutDates(req.params.id);
     const productions = productionsModel.byUser(req.session.user_id);
@@ -103,10 +101,11 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  // console.log("BODY", Object.keys(req.body));
+  const performanceDates = req.body.performance_dates.split(',');
   let production = {
     name: req.body.name,
-    performance_dates: JSON.stringify(req.body.performance_dates)
+    play_id: req.body.play_id,
+    performance_dates: JSON.stringify(performanceDates)
   }
    productionsModel.create(production)
        .then((production) => {
@@ -115,7 +114,6 @@ router.post('/', (req, res, next) => {
            production_id: production[0].id,
            production_role_id: 1
          }
-         console.log(req.body)
          knex('users_productions')
          .insert(myProduction)
          .then(() => {
@@ -126,15 +124,6 @@ router.post('/', (req, res, next) => {
            next(err)
        });
 });
-//
-// router.post('/', (req, res, next) => {
-//     productionsModel.create(req.body)
-//         .then((production) => {
-//             res.status(201).json(production)
-//         })
-//         .catch((err) => {
-//             res.send(err)
-//         });
-// });
+
 
 module.exports = router;
