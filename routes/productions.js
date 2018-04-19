@@ -108,6 +108,7 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                     calendarEvents.push(event);
                 });
             }
+
             for (const actor of data[1]) {
                 if (actor.blackout_dates) {
                     for (const blackout_date of actor.blackout_dates) {
@@ -117,9 +118,23 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
                 }
             }
 
+            // consolidate reharsal info so rehearsals aren't listed as a separate events for each character
+            let sceneObjs = {};
             for (const sceneRearsal of data[2]) {
-                const rehearsalEvent = { id: sceneRearsal.id, title: `${sceneRearsal.name} ${sceneRearsal.character}`, start: sceneRearsal.start_time, end: sceneRearsal.end_time, className: 'rehearsal' };
-                calendarEvents.push(rehearsalEvent);
+                if (!sceneObjs[sceneRearsal.id]) { sceneObjs[sceneRearsal.id] = {}; }
+                sceneObjs[sceneRearsal.id].name = sceneRearsal.name;
+                sceneObjs[sceneRearsal.id].characters = sceneObjs[sceneRearsal.id].characters ? sceneObjs[sceneRearsal.id].characters + ', ' + sceneRearsal.character : sceneRearsal.character;
+                sceneObjs[sceneRearsal.id].start = sceneRearsal.start_time;
+                sceneObjs[sceneRearsal.id].end = sceneRearsal.end_time;
+            }
+
+            for (const key in sceneObjs) {
+                if (sceneObjs.hasOwnProperty(key)) {
+                    const element = sceneObjs[key];
+                    const rehearsalEvent = { id: key, title: `${element.name} ${element.characters}`, start: element.start, end: element.end, className: 'rehearsal' };
+                    console.log(rehearsalEvent);
+                    calendarEvents.push(rehearsalEvent);
+                }
             }
 
             res.json(calendarEvents);
