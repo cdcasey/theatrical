@@ -105,6 +105,7 @@ router.post('/', (req, res, next) => {
   const performanceDates = req.body.performance_dates.split(',');
   let production = {
     name: req.body.name,
+    play_id: req.body.play_id,
     performance_dates: JSON.stringify(performanceDates)
   }
    productionsModel.create(production)

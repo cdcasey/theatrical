@@ -165,6 +165,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                           <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="Performance dates YYYY-MM-DD e.g. 2018-05-01, 2018-05-02, etc..">
                       </div>
 
+                      <div class="uk-margin">
+                        <select class="uk-input" name="play_id" id="">
+                          <option value="" disabled selected>Select One</option>
+                        <% for(play of plays){ %>
+                          <option value="<%= play.id %>"><%= play.name %></option>
+                        <% } %>
+                        </select>
+                      </div>
                       <!-- <div class="uk-margin">
                           <input class="uk-input" id="prodCharacters" type="text" name="characters" placeholder="Characters">
                       </div>
