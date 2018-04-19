@@ -17,9 +17,10 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    req.body.role_id = 2;
     usersModel.create(req.body)
         .then((user) => {
-            res.status(201).json(user);
+            res.status(201).redirect('/');
         })
         .catch((err) => {
             next(err);
