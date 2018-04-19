@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router({ mergeParams: true });
+const userModel = require('../models/users');
 const productionsModel = require('../models/productions');
 const scenesModel = require('../models/scenes');
 const charactersModel = require('../models/characters');
@@ -60,7 +61,7 @@ router.get('/:id/admin', (req, res, next) => {
         .then((data) => {
             charactersModel.byPlayId(data[0].play_id)
                 .then((characters) => {
-                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions:data[2], characters });
+                    res.render('admin-console', { user: req.session.user_id, the_production: data[0], actors: data[1], productions: data[2], characters });
                 })
         })
         .catch((err) => {
@@ -104,29 +105,103 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const performanceDates = req.body.performance_dates.split(',');
-  let production = {
-    name: req.body.name,
-    play_id: req.body.play_id,
-    performance_dates: JSON.stringify(performanceDates)
-  }
-   productionsModel.create(production)
-       .then((production) => {
-         let myProduction = {
-           user_id: req.params.user_id,
-           production_id: production[0].id,
-           production_role_id: 1
-         }
-         knex('users_productions')
-         .insert(myProduction)
-         .then(() => {
-           res.redirect(`/users/${req.params.user_id}/profile`)
-         })
-       })
-       .catch((err) => {
-           next(err)
-       });
+    const performanceDates = req.body.performance_dates.split(',');
+    let production = {
+        name: req.body.name,
+        play_id: req.body.play_id,
+        performance_dates: JSON.stringify(performanceDates)
+    }
+    productionsModel.create(production)
+        .then((production) => {
+            let myProduction = {
+                user_id: req.params.user_id,
+                production_id: production[0].id,
+                production_role_id: 1
+            }
+            knex('users_productions')
+                .insert(myProduction)
+                .then(() => {
+                    res.redirect(`/users/${req.params.user_id}/profile`)
+                })
+        })
+        .catch((err) => {
+            next(err)
+        });
 });
 
+router.post('/:id/add_cast', (req, res, next) => {
+    // console.log(req.body);
+    // { first_name: 'asd',
+    // last_name: 'asfasf',
+    // email: 'safsd@sdfds.netwe',
+    // phone: 'asfasdsad',
+    // character_id: '2',
+    // blackout_dates: '2018-4-19' }
+
+    const actorUserData = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        phone: req.body.phone,
+        role_id: 2
+    }
+
+    let newUserPromise;
+    userModel.getByEmail(req.body.email)
+        .then((user) => {
+            newUserPromise = user ? false : userModel.create(actorUserData);
+            if (newUserPromise) {
+                newUserPromise
+                    .then((user) => {
+                        processActorData(user, req.body, req.params.id)
+                            .then((data) => {
+                                console.log(data);
+
+                                res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                            })
+                            .catch((err) => {
+                                next(err)
+                            });
+                    })
+                    .catch((err) => {
+                        next(err)
+                    });
+            } else {
+                processActorData(user, req.body, req.params.id)
+                    .then((data) => {
+                        console.log(data);
+
+                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                    })
+                    .catch((err) => {
+                        next(err)
+                    });
+            }
+        })
+        .catch((err) => {
+            next(err)
+        });
+});
+
+function processActorData(actor, actorInfo, production_id) {
+    console.log("ACTOR", actor);
+    console.log("INFO", actorInfo);
+    const blackoutDates = JSON.stringify(actorInfo.blackout_dates.replace(' ', '').split(','));
+    console.log(blackoutDates);
+
+    const userProduction = {
+        user_id: actor.id,
+        production_id: production_id,
+        blackout_dates: blackoutDates,
+        production_role_id: 2
+    }
+    const userCharacter = {
+        user_id: actor.id,
+        character_id: actorInfo.character_id
+    }
+    console.log("u_p", userProduction);
+    console.log("u_c", userCharacter);
+    return Promise.all([knex('users_productions').insert(userProduction), knex('users_characters').insert(userCharacter)])
+}
 
 module.exports = router;
