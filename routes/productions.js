@@ -153,11 +153,9 @@ router.post('/:id/add_cast', (req, res, next) => {
             if (newUserPromise) {
                 newUserPromise
                     .then((user) => {
-                        processActorData(user, req.body, req.params.id)
+                        processActorData(user[0], req.body, req.params.id)
                             .then((data) => {
-                                console.log(data);
-
-                                res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                                res.redirect(req.originalUrl.replace('add_cast', 'admin'));
                             })
                             .catch((err) => {
                                 next(err)
@@ -169,9 +167,7 @@ router.post('/:id/add_cast', (req, res, next) => {
             } else {
                 processActorData(user, req.body, req.params.id)
                     .then((data) => {
-                        console.log(data);
-
-                        res.redirect(req.originalUrl.split('?')[0] + '/admin');
+                        res.redirect(req.originalUrl.replace('add_cast', 'admin'));
                     })
                     .catch((err) => {
                         next(err)
@@ -184,8 +180,6 @@ router.post('/:id/add_cast', (req, res, next) => {
 });
 
 function processActorData(actor, actorInfo, production_id) {
-    console.log("ACTOR", actor);
-    console.log("INFO", actorInfo);
     const blackoutDates = JSON.stringify(actorInfo.blackout_dates.replace(' ', '').split(','));
     console.log(blackoutDates);
 
@@ -199,8 +193,8 @@ function processActorData(actor, actorInfo, production_id) {
         user_id: actor.id,
         character_id: actorInfo.character_id
     }
-    console.log("u_p", userProduction);
-    console.log("u_c", userCharacter);
+    // TODO: IN THE EVENT OF AN EXISTING USER, A RECORD IN users_productions
+    // SHOULD BE UPDATED INSTEAD OF INSERTED
     return Promise.all([knex('users_productions').insert(userProduction), knex('users_characters').insert(userCharacter)])
 }
 
