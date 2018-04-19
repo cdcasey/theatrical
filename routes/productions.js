@@ -103,9 +103,11 @@ router.get('/:id/admin/fullcalendar', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   // console.log("BODY", Object.keys(req.body));
+  console.log(req.body);
+  const performanceDates = req.body.performance_dates.split(',');
   let production = {
     name: req.body.name,
-    performance_dates: JSON.stringify(req.body.performance_dates)
+    performance_dates: JSON.stringify(performanceDates)
   }
    productionsModel.create(production)
        .then((production) => {
@@ -114,7 +116,6 @@ router.post('/', (req, res, next) => {
            production_id: production[0].id,
            production_role_id: 1
          }
-         console.log(req.body)
          knex('users_productions')
          .insert(myProduction)
          .then(() => {

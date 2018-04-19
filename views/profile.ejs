@@ -152,7 +152,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div id="addProduction" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
             <container id="addProductionContainer">
-                <form action="/users/<%=user.id%>/productions" method="POST" enctype="multipart/form-data">
+                <form action="/users/<%=user.id%>/productions" method="POST">
                   <fieldset class="uk-fieldset">
 
                       <legend class="uk-legend">Add a production</legend>
@@ -162,7 +162,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                       </div>
 
                       <div class="uk-margin">
-                          <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="Performance dates">
+                          <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="Performance dates YYYY-MM-DD e.g. 2018-05-01, 2018-05-02, etc..">
                       </div>
 
                       <!-- <div class="uk-margin">
@@ -173,9 +173,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                           <input class="uk-input" id="prodActors" type="text" name="actor" placeholder="Actors">
                       </div> -->
 
-                      <div class="uk-margin">
+                      <!-- <div class="uk-margin">
                           <input id="fileSelect" name="csv" type="file" accept=".csv,     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain" />
-                      </div>
+                      </div> -->
 
                       <div class="uk-margin">
                           <button id="productionCreate" class="uk-button uk-button-default btn btn-action">Submit</button>
