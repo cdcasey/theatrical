@@ -20,9 +20,11 @@ router.post('/', (req, res, next) => {
     req.body.role_id = 2;
     usersModel.create(req.body)
         .then((user) => {
-            res.status(201).redirect('/');
+            req.session.user_id = user[0].id;
+            res.redirect(`/users/${req.session.user_id}/profile`);
         })
         .catch((err) => {
+            res.status(400).send('A user with that email already exists');
             next(err);
         })
 });
