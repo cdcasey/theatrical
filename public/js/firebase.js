@@ -24,7 +24,6 @@ var file;
     })
 
     //add info to database
-
     $('.js-form').on('submit', event => {
         const email = $('#registerEmail').val()
         console.log(email, fileName)
