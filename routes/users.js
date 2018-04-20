@@ -23,6 +23,7 @@ router.post('/', (req, res, next) => {
             res.status(201).redirect('/');
         })
         .catch((err) => {
+            res.status(400).send('A user with that email already exists');
             next(err);
         })
 });
