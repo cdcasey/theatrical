@@ -45,7 +45,3 @@
       console.log('Error!');
       console.log(err);
     }
-
-    $(window).on('load', function() {
-       $("#cover").hide();
-    });

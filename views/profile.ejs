@@ -23,6 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .dropdown:hover .dropdown-content {display: block;}
 .uk-link, a {color: black !important;}
 .uk-modal-dialog {width: 90% !important;}
+.editProfileForm {width: 50% !important;}
 </style>
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css" />
@@ -33,7 +34,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <body>
 
 <!-- Hide hide page until all content has loaded -->
-<div id="cover" style="position: fixed; height: 100%; width: 100%; top:0; left: 0; background: white; z-index:9999;"></div>
+<!-- <div id="cover" style="position: fixed; height: 100%; width: 100%; top:0; left: 0; background: white; z-index:9999;"></div> -->
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -94,7 +95,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
       <!-- Edit profile Model -->
       <div id="edit" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
+        <div class="uk-modal-dialog uk-modal-body editProfileForm">
           <container id="edit_profile">
             <form action="/users/<%=user.id%>?_method=PATCH" method="POST">
               <fieldset class="uk-fieldset">
@@ -102,18 +103,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                 <legend class="uk-legend">Edit profile info</legend>
 
                 <div class="uk-margin">
+                  <label for="first_name" style="font-size: 1em; font-family: Montserrat;">First name: </label>
                   <input class="uk-input" id="first_name" name="first_name" type="first_name" value="<%=user.first_name%>">
                 </div>
 
                 <div class="uk-margin">
+                  <label for="last_name" style="font-size: 1em; font-family: Montserrat;">Last name: </label>
                   <input class="uk-input" id="last_name" name="last_name" type="last_name" value="<%=user.last_name%>">
                 </div>
 
                 <div class="uk-margin">
+                  <label for="email" style="font-size: 1em; font-family: Montserrat;">Email: </label>
                   <input class="uk-input" id="email" name="email" type="email" value="<%=user.email%>">
                 </div>
 
                 <div class="uk-margin">
+                  <label for="phone" style="font-size: 1em; font-family: Montserrat;">Phone: </label>
                   <input class="uk-input" id="phone" name="phone" type="phone" value="<%=user.phone%>">
                 </div>
 
@@ -152,7 +157,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
       <!-- Add Production Modal -->
       <div id="addProduction" uk-modal>
-          <div class="uk-modal-dialog uk-modal-body">
+          <div class="uk-modal-dialog uk-modal-body editProfileForm">
             <container id="addProductionContainer">
                 <form action="/users/<%=user.id%>/productions" method="POST">
                   <fieldset class="uk-fieldset">
@@ -160,15 +165,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                       <legend class="uk-legend">Add a production</legend>
 
                       <div class="uk-margin">
+                          <label for="prodName" style="font-size: 1em; font-family: Montserrat;">Name of production: </label>
                           <input class="uk-input" id="prodName" type="text" name="name" placeholder="Name of production">
                       </div>
 
                       <div class="uk-margin">
-                          <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="Performance dates YYYY-MM-DD e.g. 2018-05-01, 2018-05-02, etc..">
+                          <label for="prodDates" style="font-size: 1em; font-family: Montserrat;">Performance dates: </label>
+                          <input class="uk-input" id="prodDates" type="text" name="performance_dates" placeholder="YYYY-MM-DD e.g. 2018-05-01, 2018-05-02, etc..">
                       </div>
 
                       <div class="uk-margin">
-                        <select class="uk-input" name="play_id" id="">
+                        <label for="plays" style="font-size: 1em; font-family: Montserrat;">Play: </label>
+                        <select class="uk-input" name="play_id" id="plays">
                           <option value="" disabled selected>Select One</option>
                         <% for(play of plays){ %>
                           <option value="<%= play.id %>"><%= play.name %></option>
@@ -214,8 +222,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
-          <br>
-          <p>Upcoming Rehearsals:</p>
+          <p style="margin-top: 10px">Upcoming Rehearsals:</p>
           <% for(production of productions){ %>
             <% if (production.rehearsal_dates) { %>
               <p><strong><%= production.name %></strong></p>
@@ -251,7 +258,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <!-- Header -->
       <header class="w3-container w3-red w3-center" style="padding:128px 16px">
         <h1 class="w3-margin w3-jumbo">TheatriCAL</h1>
-        <p class="w3-xlarge">Manage your production with ease</p>
+        <p class="w3-xlarge">Plan. Rehearse. Play.</p>
       </header>
 
       <!-- First Grid -->
