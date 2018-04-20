@@ -33,7 +33,7 @@
 <body>
 
 <!-- Navbar -->
-<div class="w3-top">
+<div class="w3-top tnav">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3w3-hover-white">TheatriCAL</a>
@@ -50,7 +50,7 @@
   </div>
 
   <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large tnav">
     <div class="dropdown w3-bar-item w3-button w3-padding-large">
       <a href="#" class="">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content">
@@ -191,7 +191,14 @@
     </div>
 </div>
 
-
+<!-- Event View Modal -->
+<div id="event-view" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <container>
+          <div id="event-content"></div>
+        </container>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
