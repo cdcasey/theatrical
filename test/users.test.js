@@ -32,7 +32,7 @@ describe('Tests for users routes', () => {
     it('POST /users should create a new entry in the database', function (done) {
         request.post('/users')
             .send({ first_name: 'Charlie', last_name: 'Stites', phone: '555-555-555', email: 'charlie@someemail.nope', password: 'charlie', role_id: 2 })
-            .expect(201)
+            .expect(302)
             .end(function (err, res) {
                 if (err) throw err;
                 knex('users')
