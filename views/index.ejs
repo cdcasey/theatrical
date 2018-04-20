@@ -81,7 +81,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div id="register" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <container id="signInContainer">
-          <form action="/users" method="POST">
+          <form action="/users" method="POST" class="js-form">
             <fieldset class="uk-fieldset">
 
                 <legend class="uk-legend">Sign Up</legend>
@@ -104,6 +104,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
                 <div class="uk-margin">
                     <input class="uk-input" id="registerPhone" name="phone" type="text" placeholder="Phone Number ('555-555-5555')">
+                </div>
+
+                <div class="uk-margin">
+                    <label for="js-image-upload">Upload Image</label>
+                    <input style="display: flex; align-items: center;" type="file" value="upload" id="js-image-upload" class=""/>
                 </div>
 
                 <div class="uk-margin">
@@ -179,6 +184,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <p>© 2018 Tim Burns, Chris Casey, and Hunter Jefferson. ALL RIGHTS RESERVED. | AUSTIN, TX</p>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/firebase.js"></script>
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
