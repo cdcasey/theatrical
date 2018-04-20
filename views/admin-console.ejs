@@ -30,13 +30,16 @@
 <!-- Admin Console JS -->
 <script src="/js/admin.js" defer></script>
 
+<style>
+.uk-modal-dialog {width: 90% !important;}
+</style>
 <body>
 
 <!-- Navbar -->
 <div class="w3-top tnav">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3w3-hover-white">TheatriCAL</a>
+    <a href="#about" uk-toggle class="w3-bar-item w3-button w3-padding-large">TheatriCAL</a>
     <div class="dropdown">
       <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-white">Productions <i class="fa fa-caret-down"></i></a>
       <div class="dropdown-content" style="margin-top: 50px;">
@@ -204,6 +207,73 @@
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
  <p>© 2018 Tim Burns, Chris Casey, and Hunter Jefferson. ALL RIGHTS RESERVED. | AUSTIN, TX</p>
 </footer>
+
+<!-- This is the modal -->
+<div id="about" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <!-- Header -->
+      <header class="w3-container w3-red w3-center" style="padding:128px 16px">
+        <h1 class="w3-margin w3-jumbo">TheatriCAL</h1>
+        <p class="w3-xlarge">Manage your production with ease</p>
+      </header>
+
+      <!-- First Grid -->
+      <div class="w3-row-padding w3-padding-64 w3-container">
+        <div class="w3-content" style="display: flex; align-items: center;">
+          <div class="w3-twothird">
+            <h1>Manage your production with ease</h1>
+            <h5 class="">Theatre rehearsals are notoriously difficult to schedule. Actors typically submit black-out dates on paper, email, or via google forms. Regardless of the method, theatre directors need to manually collate the information in order to schedule rehearsals. TheatriCAL puts all of the information necessary to schedule rehearsals in one place. Scheduling rehearsals has never been easier.</h5>
+          </div>
+
+          <div class="w3-third w3-center">
+            <img src="https://i.imgur.com/w5ExMIP.png" style="margin-left:25px" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Grid -->
+      <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+        <div class="w3-content">
+          <div class="w3-third w3-center w3-container">
+            <h1>Cast List</h1>
+            <h5 class="">If you are directing a production, keep track of your cast list and character roles with ease. Easily add new actors and characters to your cast list, which updates in real-time.</h5><br>
+            <div class="">
+              <i class="fa fa-list-ul" style="font-size: 1300%"></i>
+            </div>
+          </div>
+
+          <div class="w3-third w3-center w3-container">
+            <h1>Personal Profile</h1>
+            <h5 class="">Create your own profile page and keep up to date with all your rehersal and performance dates. Post your blackout dates so your castmates can scheduale rehersals in the most effective manner possible.</h5>
+            <div class="">
+              <i class="fa fa-users" style="font-size: 1300%"></i>
+            </div>
+          </div>
+
+          <div class="w3-third w3-center w3-container">
+            <h1>It's a date!</h1>
+            <h5 class="">Easily see your fellow cast members blackout dates, and plan accordingly. Maximize rehersal dates by easily seeing who is available for which scene around any date!</h5><br>
+            <div class="">
+              <i class="fa fa-calendar" style="font-size: 1300%"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="parallax"></div>
+
+      <!-- Footer -->
+      <footer class="w3-container w3-padding-32 w3-center w3-opacity">
+        <div class="w3-xlarge">
+          <a href="https://www.instagram.com/theatriCAL_app/"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+        </div>
+        <div class="w3-xlarge">
+          <p style="margin-top: 10px;">Contact: theatrical@gmail.com</p>
+        </div>
+        <p>© 2018 Tim Burns, Chris Casey, and Hunter Jefferson. ALL RIGHTS RESERVED. | AUSTIN, TX</p>
+      </footer>
+    </div>
+</div>
 
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button
