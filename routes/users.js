@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
     usersModel.create(req.body)
         .then((user) => {
             req.session.user_id = user[0].id;
-            setTimeout(() => { res.status(201).redirect(`/users/${req.session.user_id}/profile`) }, 4000);
+            setTimeout(() => { res.status(201).redirect(`/users/${req.session.user_id}/profile`) }, 1000);
         })
         .catch((err) => {
             res.status(400).send('A user with that email already exists');

@@ -32,6 +32,7 @@
 
 <style>
 .uk-modal-dialog {width: 90% !important;}
+.addActor {width: 50% !important;}
 </style>
 <body>
 
@@ -91,7 +92,7 @@
 
       <!-- Add Actor Modal -->
       <div id="addActor" uk-modal>
-       <div class="uk-modal-dialog uk-modal-body">
+       <div class="uk-modal-dialog uk-modal-body addActor">
         <h2 class="uk-modal-title">Add actor</h2>
         <form action="/users/<%= user %>/productions/<%= the_production.id %>/add_cast" method="POST">
           <fieldset class="uk-fieldset">
@@ -156,7 +157,7 @@
 
 <!-- Add Date Modal -->
 <div id="add-date" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
+    <div class="uk-modal-dialog uk-modal-body addActor">
       <container id="add-date_Container">
           <form action="/users/<%=user%>/productions/<%=the_production.id%>?_method=PATCH" method="POST">
             <fieldset class="uk-fieldset">
