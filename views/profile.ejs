@@ -32,6 +32,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script>
 <body>
 
+<!-- Hide hide page until all content has loaded -->
+<div id="cover" style="position: fixed; height: 100%; width: 100%; top:0; left: 0; background: white; z-index:9999;"></div>
+
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
@@ -77,10 +80,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center" style="margin-top: 15px">My Profile</h4>
-         <p class="w3-center"><img src="https://www.hadiwinata.com/assets/up/bb-plugin/cache/sample-profile-circle.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <p class="w3-center"><img id="profilePic" class="w3-circle" style="max-height:200px;max-width:200px" alt=""></p>
          <hr>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><%= user.first_name %> <%= user.last_name %></p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.email %></p>
+         <p id="userEmail"><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.email %></p>
          <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i><%= user.phone %></p>
          <p><a href="#edit" uk-toggle><i class="fa fa-edit fa-fw w3-margin-right w3-text-theme"></i>Edit profile</a></p>
         </div>
@@ -308,6 +311,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       </footer>
     </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/firebaseRetrieveImage.js"></script>
 <script>
 // Accordion
 function accordionFunction(id) {
